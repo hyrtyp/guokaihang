@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#90000000"
+        android:gravity="center" >
+
+        <RelativeLayout
+            android:layout_width="400.0dip"
+            android:layout_height="100.0dip"
+            android:background="#eeffffff" >
+
+            <ImageView
+                android:id="@id/yjbg_bookself_quan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:padding="10.0dip"
+                android:src="@drawable/yjbg_pop_jianjian_cloase" />
+
+            <LinearLayout
+                android:layout_width="320.0dip"
+                android:layout_height="50.0dip"
+                android:layout_below="@id/yjbg_bookself_quan"
+                android:layout_marginLeft="55.0dip"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@id/yjbg_bookself_xinx"
+                    android:layout_width="110.0dip"
+                    android:layout_height="25.0dip"
+                    android:layout_marginBottom="40.0dip"
+                    android:src="@drawable/book_self_bookinfo" 
+                    android:visibility="gone"/>
+
+                <ImageView
+                    android:id="@id/yjbg_bookself_del"
+                    android:layout_width="110.0dip"
+                    android:layout_height="25.0dip"
+                    android:src="@drawable/book_self_bookdel" />
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

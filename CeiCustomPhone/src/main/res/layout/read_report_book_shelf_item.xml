@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:padding="2.0dip" >
+
+    <LinearLayout
+        android:id="@id/yjbg_book_shelf_hand"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@id/yjbg_book_shelf_hand_img"
+            android:layout_width="80.0dip"
+            android:layout_height="100.0dip"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/read_report_report1" />
+
+        <ProgressBar
+            android:id="@id/yjbg_book_list_item_pro"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="75.0dip"
+            android:layout_height="5.0dip"
+            android:layout_marginTop="-30.0dip"
+            android:progressDrawable="@drawable/progressbar"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@id/yjbg_book_list_item_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40.0dip"
+            android:layout_marginTop="-30.0dip"
+            android:background="@drawable/book_self_tv_bg"
+            android:gravity="right"
+            android:text="0%"
+            android:textColor="#ffffffff" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/yjbg_book_shelf_hand"
+        android:orientation="vertical"
+        android:paddingLeft="10.0dip" >
+
+        <TextView
+            android:id="@id/yjbg_book_shelf_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="title"
+            android:textColor="#ff054b93"
+            android:textSize="28.0px" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="5.0dip" 
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/bglitt" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="  作者："
+                    android:textColor="#ff535353"
+                    android:textSize="18.0px" />
+
+                <TextView
+                    android:id="@id/yjbg_book_shelf_aname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="me"
+                    android:textColor="#ff535353"
+                    android:textSize="18.0px" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="5.0dip" 
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/bglitt" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="  价格：￥"
+                    android:textColor="#ff535353"
+                    android:textSize="20.0px" />
+
+                <TextView
+                    android:id="@id/yjbg_book_shelf_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="50"
+                    android:textColor="#ffe00404"
+                    android:textSize="20.0px" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@id/yjbg_book_shelf_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:paddingTop="5.0dip"
+            android:singleLine="true"
+            android:text="body"
+            android:textColor="#ff101010"
+            android:textSize="18.0px" 
+            android:layout_marginTop="5dp"/>
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fadingEdge="none"
+    android:fadingEdgeLength="0.0dip" >    
+    <ImageView
+        android:id="@id/title"
+        style="@style/yangshi_pad_title"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_centerInParent="true"
+        android:paddingRight="20dp"
+        android:src="@drawable/guokaihangwecome_logo1"
+        />
+    <TextView 
+        android:id="@id/textView1"
+        style="@style/yangshi_pad_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="25dp"
+        android:visibility="gone"
+        />
+</RelativeLayout>

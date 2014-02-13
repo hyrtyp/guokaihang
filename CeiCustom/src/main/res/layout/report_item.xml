@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginLeft="5.0dip"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:layout_width="125.0dip"
+            android:layout_height="155.0dip"
+            android:background="@drawable/yjbg_book_bg" />
+
+        <ImageView
+            android:id="@id/report_item_reportImg"
+            android:layout_width="123.0dip"
+            android:layout_height="153.0dip"
+            android:background="@drawable/report1" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@id/report_item_reportName"
+        android:layout_width="125.0dip"
+        android:layout_height="wrap_content"
+        android:background="@drawable/yjbg_text_bg"
+        android:ellipsize="marquee"
+        android:gravity="left"
+        android:singleLine="true"
+        android:text="报告已"
+        android:textColor="@color/black"
+        android:textSize="15.0dip" />
+
+</LinearLayout>

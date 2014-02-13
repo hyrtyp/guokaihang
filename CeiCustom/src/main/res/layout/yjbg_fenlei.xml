@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@id/layout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:alwaysDrawnWithCache="false"
+    android:background="@drawable/phone_studynm_bg"
+    android:fadingEdge="none"
+    android:fadingEdgeLength="0.0dip" >
+
+    <include
+        android:id="@id/top"
+        layout="@layout/yjbg_title_top"
+        android:visibility="gone" />
+
+        <RelativeLayout
+            android:id="@id/botton"
+            android:layout_width="fill_parent"
+            android:layout_height="85.0dip"
+            android:background="@drawable/bottom_bg"
+            android:layout_alignParentBottom="true" 
+            android:paddingLeft="100.0dip"
+            android:paddingRight="100.0dip" >
+
+            <fragment
+                android:id="@+id/report_bottom_menu"
+                android:name="com.hyrt.cei.ui.ebook.ReadReportBottomMenu"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@id/botton"
+        android:layout_below="@id/top"
+        android:orientation="horizontal"
+        android:weightSum="10.0" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="8.0"
+            >
+
+            <ListView
+                android:id="@id/yjbg_feilei_list_left"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="45.0dip"
+                android:cacheColorHint="#00000000"
+                android:divider="@null"
+                android:dividerHeight="15.0px"
+                android:listSelector="@drawable/yjbg_fenlei_selecort" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="2.0" >
+
+            <TextView
+                android:id="@id/more"
+                android:layout_width="fill_parent"
+                android:layout_height="40.0dip"
+                android:layout_alignParentBottom="true"
+                android:background="#50ffffff"
+                android:gravity="center"
+                android:padding="5.0dip"
+                android:text="更多..."
+                android:textColor="@color/black"
+                android:textSize="12.0sp" />
+
+            <ListView
+                android:id="@id/yjbg_feilei_list_right"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_above="@id/more"
+                android:layout_marginTop="6.0dip"
+                android:cacheColorHint="@null"
+                android:divider="#ffc8c8c8"
+                android:dividerHeight="1.0dip"
+                android:paddingLeft="10.0dip"
+                android:paddingRight="10.0dip"
+                android:paddingTop="20.0dip" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>

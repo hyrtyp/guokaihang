@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@id/top"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/guokaihang_top"
+        android:gravity="center" >
+
+        <TextView
+            android:id="@id/yjbg_read_report_title"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20.0dip"
+            android:text="......pdf"
+            android:textSize="20.0dip"
+            android:textStyle="bold" 
+            android:textColor="#ffffff"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@id/bottom"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" >
+
+        <ImageView
+            android:id="@id/yjbg_read_report_menu_is"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/yjbg_read_report_bottom" />
+        
+         <TextView
+           
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="更多"
+            android:textColor="#ffffffff"
+            android:textSize="20.0px"
+            android:paddingTop="14px"
+            android:layout_alignParentRight="true"/>
+
+        <FrameLayout
+            android:id="@id/yjbg_read_report_menu"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" >
+
+            <ImageView
+                android:id="@id/yjbg_read_report_bottom_gone"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/yjbg_read_report_bottom1" />
+            
+            
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:paddingTop="17.0dip" >
+
+                <ImageView
+                    android:id="@id/yjbg_read_report_home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/yjbg_read_report_home" />
+
+                <ImageView
+                    android:id="@id/yjbg_read_report_mulu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/yjbg_read_report_mulu" />
+
+                <ImageView
+                    android:id="@id/yjbg_read_report_fontsize"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/yjbg_read_report_fontsize" />
+
+                <ImageView
+                    android:id="@id/yjbg_read_report_light"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/yjbg_read_report_light" />
+
+                <ImageView
+                    android:id="@id/yjbg_read_report_addshuqian"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/yjbg_read_report_add_shuqian" />
+
+                <ImageView
+                    android:id="@id/yjbg_read_report_shuqian"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/yjbg_read_report_shuqian" />
+            </LinearLayout>
+        </FrameLayout>
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@id/yjbg_read_report_pdfview"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/bottom"
+        android:layout_below="@id/top" />
+    
+     <ScrollView android:layout_width="5dp"
+        android:layout_height="fill_parent"
+        android:background="#FFFFFFFF"
+        android:id="@+id/sun_scrollview"
+          android:layout_below="@id/top"
+          android:layout_above="@id/bottom"
+       android:layout_alignParentRight="true"
+        android:scrollbars="vertical">
+        
+        
+    <TextView
+       
+        android:layout_width="wrap_content"
+        android:layout_height="1000dp"
+        android:layout_alignBottom="@id/yjbg_read_report_pdfview"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="35dp"
+        android:id="@+id/sun_text"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+        
+    </ScrollView>
+
+</RelativeLayout>

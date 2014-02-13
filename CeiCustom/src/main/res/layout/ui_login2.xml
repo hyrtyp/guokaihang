@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/guokaihang_back"
+    android:focusable="true"
+    android:focusableInTouchMode="true" >
+
+    <ImageView
+        android:id="@id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="35.0dip"
+        android:layout_marginTop="35.0dip"
+        android:src="@drawable/guokaihang_logo" />
+
+    <LinearLayout
+        android:id="@+id/layout_loginpassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/guokaihang_login_password"
+        android:orientation="horizontal" >
+
+        <EditText
+            android:id="@id/ui_login_password"
+            style="?android:attr/textViewStyle"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="50dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="密码"
+            android:password="true"
+            android:singleLine="true"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_loginname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/layout_loginpassword"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/guokaihang_login_name"
+        android:orientation="horizontal" >
+
+        <EditText
+            android:id="@id/ui_login_username"
+            style="?android:attr/textViewStyle"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="50dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="用户名......"
+            android:singleLine="true"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/layout_loginname"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="50dp"
+        android:src="@drawable/guokaihang_login_title" />
+
+    <Button
+        android:id="@id/ui_login_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@id/layout_loginpassword"
+        android:layout_below="@id/layout_loginpassword"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/guokaihang_login_btn" />
+
+</RelativeLayout>
