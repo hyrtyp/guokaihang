@@ -54,55 +54,31 @@ public class LoginActivity extends Activity  implements OnClickListener{
 		passwordEt = (EditText) findViewById(R.id.ui_login_password);
 		SharedPreferences settings = getSharedPreferences("loginInfo",Activity.MODE_PRIVATE);
 		loginName = settings.getString("LOGINNAME", "");
-//		accountEt.setText(settings.getString("LOGINNAME1", ""));
-//		passwordEt.setText(settings.getString("PASSWORD1", ""));
-
-//		findViewById(R.id.ui_login_regist).setOnClickListener(
-//				new OnClickListener() {
-//
-//					@Override
-//					public void onClick(View v) {
-//						Intent intent = new Intent(LoginActivity.this,
-//								RegistActivity.class);
-//						startActivity(intent);
-//					}
-//				});
-//		findViewById(R.id.ui_getpassword).setOnClickListener(
-//				new OnClickListener() {
-//
-//					@Override
-//					public void onClick(View v) {
-//						Intent intent = new Intent(LoginActivity.this,
-//								GetpasswordActivity.class);
-//						startActivity(intent);
-//					}
-//				});
 		findViewById(R.id.ui_login_login).setOnClickListener(
-				new OnClickListener() {
+                new OnClickListener() {
 
-					@Override
-					public void onClick(View v) {
-						SharedPreferences settings = getSharedPreferences(
-								"loginInfo", Activity.MODE_PRIVATE);
-						SharedPreferences.Editor editor = settings.edit();
-						if (accountEt.getText().toString().trim().equals("")
-								|| passwordEt.getText().toString().trim()
-										.equals("")) {
-							Toast.makeText(LoginActivity.this, "用户名密码不能为空!",
-									Toast.LENGTH_SHORT).show();
-							return;
-						}
-						LoginActivity.this.finish();
-						editor.putString("LOGINNAME", accountEt.getText().toString().trim());
-						editor.putString("PASSWORD", passwordEt.getText().toString().trim());
-						//用于记录用户登录，然后清除用户信息，以便于下次再次登录
-						editor.commit();
-						Intent intent = new Intent(LoginActivity.this,
-								Welcome.class);
-						startActivity(intent);
-					}
-				});
-		 registBottomEvent();
+                    @Override
+                    public void onClick(View v) {
+                        SharedPreferences settings = getSharedPreferences(
+                                "loginInfo", Activity.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = settings.edit();
+                        if (accountEt.getText().toString().trim().equals("")
+                                || passwordEt.getText().toString().trim()
+                                .equals("")) {
+                            Toast.makeText(LoginActivity.this, "用户名密码不能为空!",
+                                    Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        LoginActivity.this.finish();
+                        editor.putString("LOGINNAME", accountEt.getText().toString().trim());
+                        editor.putString("PASSWORD", passwordEt.getText().toString().trim());
+                        //用于记录用户登录，然后清除用户信息，以便于下次再次登录
+                        editor.commit();
+                        Intent intent = new Intent(LoginActivity.this,
+                                Welcome.class);
+                        startActivity(intent);
+                    }
+                });
 	}
 
 	@Override
@@ -138,15 +114,7 @@ public class LoginActivity extends Activity  implements OnClickListener{
 			break;
 		}
 	}
-	
-	private void registBottomEvent(){
-//		findViewById(R.id.home_announcement).setOnClickListener(this);
-//		findViewById(R.id.home_witsea).setOnClickListener(this);
-//		findViewById(R.id.home_ceinet).setOnClickListener(this);
-//		findViewById(R.id.home_personcenter).setOnClickListener(this);
-//		findViewById(R.id.home_disclaimer).setOnClickListener(this);
-//		findViewById(R.id.back_back).setOnClickListener(this);
-	}
+
 	@Override
 	protected void onPause() {
 		// TODO Auto-generated method stub

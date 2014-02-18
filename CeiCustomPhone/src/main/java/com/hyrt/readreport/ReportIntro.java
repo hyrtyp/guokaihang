@@ -42,10 +42,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 public class ReportIntro extends ContainerActivity {
-	private TextView textJianj;
+
 	private LinearLayout textMul;
-	private TextView zhuz, price, zhuzbq, pricebq, intorbq, time, title;
-	private ImageView reportImg, backImg;
+	private TextView time, title;
+	private ImageView reportImg;
 	private ImageButton read;
 	private Report report;
 	private DataHelper dataHelper;
@@ -57,7 +57,6 @@ public class ReportIntro extends ContainerActivity {
 		@Override
 		public void handleMessage(Message msg) {
 			if (msg.arg1 == -1) {
-				// Toast.makeText(ReportIntro.this, "文件保存错误", 1).show();
 				MyTools.exitShow(ReportIntro.this, ReportIntro.this.getWindow()
 						.getDecorView(), "文件保存错误！");
 			} else {
@@ -74,8 +73,6 @@ public class ReportIntro extends ContainerActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
-//		requestWindowFeature(0x1);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.read_report_intro);
 		Intent intent = getIntent();
@@ -88,35 +85,6 @@ public class ReportIntro extends ContainerActivity {
 	}
 
 	private void initView() {
-		backImg = (ImageView) findViewById(R.id.ib_bg_back);
-		backImg.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				Intent intent = new Intent(ReportIntro.this,
-						ReadReportMainActivity.class);
-				startActivity(intent);
-			}
-		});
-		findViewById(R.id.ib_bg_back).setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				finish();
-			}
-		});
-		findViewById(R.id.report_intro_bookshelf).setOnClickListener(
-				new OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						Intent intent = new Intent(ReportIntro.this,
-								CeiShelfBookActivity.class);
-						startActivity(intent);
-						finish();
-					}
-				});
-		textJianj = (TextView) findViewById(R.id.report_intro_jiej);
-		textJianj.setText(report.getIntro().replace("\n", "").trim());
 		textMul = (LinearLayout) findViewById(R.id.report_intro_mul);
 		Pattern pattern = Pattern.compile("[.](\\.[0-9]{1,4})");
 		String[] directories = pattern.split(report.getMulu());
@@ -141,7 +109,7 @@ public class ReportIntro extends ContainerActivity {
 		}
 		for(int i=0;i<directories.length;i++){
 			try{
-				String leftContent = null;
+				String leftContent;
 				if(directories[i].length() > 17)
 					leftContent = directories[i].substring(0,17)+"........................................................";
 				else
@@ -154,24 +122,6 @@ public class ReportIntro extends ContainerActivity {
 			textMul.addView(tv);
 			}catch(Exception e){
 			}
-		}
-		intorbq = (TextView) findViewById(R.id.report_intro_jj);
-		intorbq.setText(application.ReportColumns.get(0).getIntro() == null ? "报告说明："
-				: application.ReportColumns.get(0).getIntro() + ":");
-		zhuzbq = (TextView) findViewById(R.id.report_intro_zuoz_bq);
-		zhuzbq.setText(application.ReportColumns.get(0).getAuthro() == null ? "作者："
-				: application.ReportColumns.get(0).getAuthro() + ":");
-		pricebq = (TextView) findViewById(R.id.report_intro_price_bq);
-		pricebq.setText(application.ReportColumns.get(0).getPrice() == null ? "价格 : ￥"
-				: application.ReportColumns.get(0).getPrice() + ": ￥");
-		zhuz = (TextView) findViewById(R.id.report_intro_zuoz);
-		zhuz.setText(report.getAuthor());
-		price = (TextView) findViewById(R.id.report_intro_price);
-		if (ReadReportMainActivity.bbStart) {
-			price.setText(report.getPrice());
-		} else {
-			price.setVisibility(View.GONE);
-			pricebq.setVisibility(View.GONE);
 		}
 		time = (TextView) findViewById(R.id.report_intro_time);
 		time.setText(report.getProtime());

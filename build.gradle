@@ -1,1 +1,18 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    def repositoryUrl = project.hasProperty('sonatypeUrl') ? sonatypeUrl : 'http://127.0.0.1:8081'
+    def repositoryUsername = project.hasProperty('sonatypeUsername') ? sonatypeUsername : 'admin'
+    def repositoryPassword = project.hasProperty('sonatypePassword') ? sonatypePassword : 'admin123'
+    repositories {
+        maven {
+            credentials {
+                username repositoryUsername
+                password repositoryPassword
+            }
+            url uri(repositoryUrl+'/nexus/content/groups/public/')
+        }
+
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.8.+'
+    }
+}

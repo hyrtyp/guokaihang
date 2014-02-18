@@ -16,4 +16,7 @@
     <color name="personcenter_info_text1">#000000</color>
     <color name="personcenter_info_text2">#ffffff</color>
     <color name="personcenter_info_textbackground">#ffffff</color>
+
+    <color name="transparent_black">#19000000</color>
+    <color name="background">#fff0f4f6</color>
 </resources>

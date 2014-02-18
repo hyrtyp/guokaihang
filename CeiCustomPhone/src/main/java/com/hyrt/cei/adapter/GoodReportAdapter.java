@@ -59,7 +59,7 @@ public class GoodReportAdapter extends BaseAdapter {
 			convertView = new ImageView(mContext);
 		}
 		convertView.setLayoutParams(new Gallery.LayoutParams(
-				LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
+				LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 		convertView.setTag(data.get(position % 5).getPpath());
 		convertView
 				.setBackgroundResource(R.drawable.courseware_big_default_icon);

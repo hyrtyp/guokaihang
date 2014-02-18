@@ -3,36 +3,26 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal"
-    android:layout_marginLeft="5.0dip"
+    android:layout_marginLeft="@dimen/view_margin_smallest"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:paddingBottom="5.0dip" >
+    android:paddingBottom="@dimen/view_margin_smallest" >
 
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" >
 
         <ImageView
-            android:layout_width="90.0dip"
-            android:layout_height="110.0dip"
-            android:background="@drawable/read_report_book_bg" />
+            style="@style/bg_iv_bottom" />
 
         <ImageView
             android:id="@id/report_item_reportImg"
-            android:layout_width="87.0dip"
-            android:layout_height="110.0dip"
-            android:background="@drawable/read_report_report1" />
+            style="@style/bg_iv"/>
+
     </FrameLayout>
 
     <TextView
         android:id="@id/report_item_reportName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/read_report_text_bg"
-        android:gravity="center"
-        android:lines="2"
-        android:text="报告已"
-        android:textColor="#ff000000"
-        android:textSize="25.0px" />
+        style="@style/bg_tv_bottom" />
 
 </LinearLayout>

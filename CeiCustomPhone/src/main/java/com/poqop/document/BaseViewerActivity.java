@@ -83,7 +83,6 @@ public abstract class BaseViewerActivity extends Activity implements
 	private List<PopupWindow> poplist;
 	private String pdfPath;
 	private int startLight;
-	private TextView textView;
 	Handler mHandler = new Handler() {
 
 		@Override
@@ -140,12 +139,8 @@ public abstract class BaseViewerActivity extends Activity implements
 		// frameLayout.addView(createZoomControls(zoomModel));
 		// frameLayout.addView(gallery);
 		// 初始化首选项，加以读，独到多少页等
-		setFullScreen();
 		setContentView(contextView);
 		initView();
-		textView =  (TextView)findViewById(R.id.sun_text);
-		textView.setText("11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111");
-		
 		// 低栏的沉浮
 		ImageView imageView = (ImageView) contextView
 				.findViewById(R.id.yjbg_read_report_menu_is);
@@ -191,21 +186,8 @@ public abstract class BaseViewerActivity extends Activity implements
 		documentView.showDocument();
 
 		viewerPreferences.addRecent(getIntent().getData());
-		/*
-		 * HorizontalScrollView
-		 * ScrollView=(HorizontalScrollView)findViewById(R.id.ScrollView);
-		 * ScrollView.setFocusable(true);
-		 * ScrollView.smoothScrollTo(ScrollView.getWidth()/2, 0);
-		 */
 
 	}
-
-	/*
-	 * @Override public boolean onContextItemSelected(MenuItem item) { // TODO
-	 * Auto-generated method stub int i = item.getItemId(); switch (i) { case 0:
-	 * gallery.setVisibility(View.GONE); break; } return
-	 * super.onContextItemSelected(item); }
-	 */
 
 	public void decodingProgressChanged(final int currentlyDecoding) {
 		runOnUiThread(new Runnable() {
@@ -244,23 +226,6 @@ public abstract class BaseViewerActivity extends Activity implements
 		setWindowTitle();
 	}
 
-	private void setFullScreen() {
-//		if (viewerPreferences.isFullScreen()) {
-//			getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-//			getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-//					WindowManager.LayoutParams.FLAG_FULLSCREEN);
-//		} else {
-//			getWindow().requestFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
-//		}
-	}
-
-	/*
-	 * private PageViewZoomControls createZoomControls(ZoomModel zoomModel) {
-	 * 
-	 * final PageViewZoomControls controls = new PageViewZoomControls(this,
-	 * zoomModel); controls.setGravity(Gravity.RIGHT | Gravity.BOTTOM);
-	 * zoomModel.addEventListener(controls); return controls; }
-	 */
 	private void initDecodeService() {
 		if (decodeService == null) {
 			decodeService = createDecodeService();
@@ -334,32 +299,6 @@ public abstract class BaseViewerActivity extends Activity implements
 				ListView view = (ListView) contentView
 						.findViewById(R.id.yjbg_mulu_lv);
 				List<String> muluData = new ArrayList<String>();
-				// muluData.add("aaa");
-				/*
-				 * if (report != null && report.getMulu() != null &&
-				 * !report.getMulu().equals("")) { String muluStr =
-				 * report.getMulu(); String[] strs = muluStr.split("页"); for
-				 * (String string : strs) { muluData.add(string+"页"); } }
-				 * if(muluData.size()>0){ view.setAdapter(new
-				 * ReportMuluAdapter(BaseViewerActivity.this, muluData));
-				 * view.setOnItemClickListener(new OnItemClickListener() {
-				 * 
-				 * @Override public void onItemClick(AdapterView<?> arg0, View
-				 * arg1, int arg2, long arg3) { int page=0; try { String item =
-				 * arg0.getAdapter().getItem(arg2) .toString(); String[] strs =
-				 * item.split(","); if(strs.length!=2){ strs = item.split("，");
-				 * } if(strs.length==2){ page =
-				 * Integer.parseInt(strs[1].replace("页",""));
-				 * if(page>documentView.pages.size()){
-				 * Toast.makeText(BaseViewerActivity.this, "页数不对！", 2).show();
-				 * return; } documentView.goToPage(page-1); for(PopupWindow
-				 * window:poplist){ if(window.isShowing()){ window.dismiss(); }
-				 * } } } catch (NumberFormatException e) { // TODO
-				 * Auto-generated catch block
-				 * Toast.makeText(BaseViewerActivity.this,"目录格式不对，联系管理员",
-				 * 2).show(); mPopupWindow.dismiss(); e.printStackTrace(); } }
-				 * }); }
-				 */
 				if (report != null && report.getMulu() != null
 						&& !report.getMulu().equals("")) {
 					String muluStr = report.getMulu();
@@ -381,12 +320,6 @@ public abstract class BaseViewerActivity extends Activity implements
 							try {
 								String item = arg0.getAdapter().getItem(arg2)
 										.toString();
-								/*
-								 * String[] strs = item.split(",");
-								 * if(strs.length!=2){ strs = item.split("，"); }
-								 */
-
-								// if(strs.length==2){
 								String regex = "\\d{1,}$";
 
 								Pattern p = Pattern.compile(regex);
@@ -427,13 +360,6 @@ public abstract class BaseViewerActivity extends Activity implements
 				mPopupWindow.showAtLocation(documentView, Gravity.BOTTOM
 						| Gravity.LEFT, 0, 80);
 				poplist.add(mPopupWindow);
-				// 获取到页数
-				/*
-				 * int pageCount=decodeService.getPageCount();
-				 * documentView.goToPage(pageCount);
-				 * gallery.setVisibility(View.VISIBLE);
-				 * gallery.setSelection(documentView.getCurrentPage());
-				 */
 			}
 		});
 		fontsize = (ImageView) findViewById(R.id.yjbg_read_report_fontsize);
@@ -658,7 +584,7 @@ public abstract class BaseViewerActivity extends Activity implements
 				View contentView = LayoutInflater.from(getApplicationContext())
 						.inflate(R.layout.read_report_pop_add_shuqian, null);
 				final PopupWindow mPopupWindow = new PopupWindow(contentView,
-						450, 300);
+						400, 200);
 				mPopupWindow.setFocusable(true);
 				mPopupWindow.setTouchable(true); // 设置PopupWindow可触摸
 				mPopupWindow.setOutsideTouchable(true); // 设置非PopupWindow区域可触摸
@@ -790,11 +716,6 @@ public abstract class BaseViewerActivity extends Activity implements
 				mPopupWindow.setBackgroundDrawable(new BitmapDrawable());
 				mPopupWindow.showAtLocation(documentView, Gravity.BOTTOM
 						| Gravity.RIGHT, 0, 80);
-
-				/*
-				 * Intent intent=new Intent(BaseViewerActivity.this,
-				 * BookQianActivity.class); startActivity(intent);
-				 */
 				poplist.add(mPopupWindow);
 			}
 
@@ -804,11 +725,8 @@ public abstract class BaseViewerActivity extends Activity implements
 	/** * 获取屏幕的亮度 */
 
 	public static int getScreenBrightness(Activity activity) {
-
 		int nowBrightnessValue = 0;
-
 		ContentResolver resolver = activity.getContentResolver();
-
 		try {
 
 			nowBrightnessValue = android.provider.Settings.System.getInt(
@@ -830,12 +748,6 @@ public abstract class BaseViewerActivity extends Activity implements
 	/** * 设置亮度 */
 
 	public static void setBrightness(Activity activity, int brightness) {
-
-		// Settings.System.putInt(activity.getContentResolver(),
-
-		// Settings.System.SCREEN_BRIGHTNESS_MODE,
-
-		// Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL);
 
 		WindowManager.LayoutParams lp = activity.getWindow().getAttributes();
 
@@ -928,19 +840,7 @@ public abstract class BaseViewerActivity extends Activity implements
 		} else {
 			setBrightness(this, size);
 		}
-	}
-
-	/*
-	 * @Override public void onItemSelected(AdapterView<?> arg0, View arg1, int
-	 * arg2, long arg3) { // TODO Auto-generated method stub
-	 * 
-	 * }
-	 * 
-	 * @Override public void onNothingSelected(AdapterView<?> arg0) { // TODO
-	 * Auto-generated method stub
-	 * 
-	 * }
-	 */
+    }
 
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -993,30 +893,5 @@ public abstract class BaseViewerActivity extends Activity implements
 			break;
 		}
 	}
-	
-	 @Override
-	    public void onConfigurationChanged(Configuration newConfig) {
-	        super.onConfigurationChanged(newConfig);
-	        Log.i("--Main--", "onConfigurationChanged");
-	       
-	        if(newConfig.orientation==Configuration.ORIENTATION_LANDSCAPE){
-	        	textView.setText("1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111");
-	        }else{
-	        	textView.setText("11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111");
-	        }
-	    }
 
-	/*// 这里来监听屏幕触控时间
-	@Override
-	public boolean onTouchEvent(MotionEvent event) {
-
-		
-		 * 判定用户是否触摸到了图片 如果是单点触摸则调用控制图片移动的方法 如果是2点触控则调用控制图片大小的方法
-		 
-
-		if (event.getPointerCount() == 2) {
-			scaleWithFinger(event);
-		}
-		return true;
-	}*/
 }

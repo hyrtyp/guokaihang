@@ -37,7 +37,7 @@ import com.hyrt.ceiphone.R;
  * @author Administrator
  * 
  */
-public class Announcement extends ContainerActivity implements OnClickListener {
+public class Announcement extends ContainerActivity{
 	private ExecutorService executorService = Executors.newFixedThreadPool(1);
 	private ListView list;
 	private List<AnnouncementNews> announcementNews;
@@ -57,11 +57,6 @@ public class Announcement extends ContainerActivity implements OnClickListener {
 	}
 
 	public void init() {
-//		LinearLayout bottomsLl = (LinearLayout) findViewById(R.id.bottoms_Ll);
-//		for (int i = 0; i < bottomsLl.getChildCount(); i++) {
-//			((RelativeLayout) (bottomsLl.getChildAt(i))).getChildAt(0)
-//					.setOnClickListener(this);
-//		}
 		list = (ListView) findViewById(R.id.tzgg_list);
 		refreshListData();
 		list.setOnItemClickListener(new OnItemClickListener() {
@@ -91,7 +86,7 @@ public class Announcement extends ContainerActivity implements OnClickListener {
 			@Override
 			public void run() {
 				announcementNews = new ArrayList<AnnouncementNews>();
-				String rs = "";
+				String rs;
 				ColumnEntry columnEntry = ((CeiApplication) getApplication()).columnEntry;
 				rs = Service.queryNotice(columnEntry.getUserId());
 				try {
@@ -103,28 +98,6 @@ public class Announcement extends ContainerActivity implements OnClickListener {
 				newsHandler.sendMessage(msg);
 			}
 		});
-	}
-
-	@Override
-	public void onClick(View v) {
-		switch (v.getId()) {
-		case R.id.main_rl:
-			intent = new Intent(this, HomePageDZB.class);
-			startActivity(intent);
-			break;
-		case R.id.notice_rl:
-			intent = new Intent(this, Announcement.class);
-			startActivity(intent);
-			break;
-		case R.id.collect_rl:
-			intent = new Intent(this, WitSeaActivity.class);
-			startActivity(intent);
-			break;
-		case R.id.psc_rl:
-			intent = new Intent(this, PersonCenter.class);
-			startActivity(intent);
-			break;
-		}
 	}
 
 }

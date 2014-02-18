@@ -55,8 +55,6 @@ public class LoginActivity extends Activity {
 		SharedPreferences settings = getSharedPreferences("loginInfo",
 				Activity.MODE_PRIVATE);
 		loginName = settings.getString("LOGINNAME", "");
-		// accountEt.setText(settings.getString("LOGINNAME", ""));
-		// passwordEt.setText(settings.getString("PASSWORD", ""));
 		accountEt.setOnFocusChangeListener(new OnFocusChangeListener() {
 			@Override
 			public void onFocusChange(View v, boolean hasFocus) {
@@ -78,26 +76,6 @@ public class LoginActivity extends Activity {
 				}
 			}
 		});
-		findViewById(R.id.ui_login_regist).setOnClickListener(
-				new OnClickListener() {
-
-					@Override
-					public void onClick(View v) {
-						Intent intent = new Intent(LoginActivity.this,
-								RegistActivity.class);
-						startActivity(intent);
-					}
-				});
-		findViewById(R.id.ui_getpassword).setOnClickListener(
-				new OnClickListener() {
-
-					@Override
-					public void onClick(View v) {
-						Intent intent = new Intent(LoginActivity.this,
-								GetpasswordActivity.class);
-						startActivity(intent);
-					}
-				});
 		findViewById(R.id.ui_login_login).setOnClickListener(
 				new OnClickListener() {
 
@@ -124,13 +102,6 @@ public class LoginActivity extends Activity {
 						startActivity(intent);
 					}
 				});
-		findViewById(R.id.ui_back).setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				LoginActivity.this.finish();
-			}
-		});
 	}
 
 	@Override

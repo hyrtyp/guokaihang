@@ -11,6 +11,7 @@ import org.vudroid.pdfdroid.PdfViewerActivity;
 import com.hyrt.cei.application.CeiApplication;
 import com.hyrt.cei.db.DataHelper;
 import com.hyrt.cei.util.AsyncImageLoader;
+import com.hyrt.cei.util.BitmapManager;
 import com.hyrt.cei.util.EncryptDecryption;
 import com.hyrt.cei.util.MyTools;
 import com.hyrt.cei.util.AsyncImageLoader.ImageCallback;
@@ -25,6 +26,7 @@ import com.poqop.document.ViewerPreferences;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Environment;
@@ -45,13 +47,10 @@ public class ReadReportAdapter extends BaseAdapter {
 
 	private List<Report> data;
 	private LayoutInflater inflater;
-	private AsyncImageLoader asyncImageLoader;
 	private ListView goodList;
 	private Activity context;
 	private DataHelper dataHelper;
-	private CeiApplication application;
-	private boolean flage;
-	private HashMap<String, SoftReference<Drawable>> drawables = new HashMap<String, SoftReference<Drawable>>();
+    private BitmapManager bmpManager;
 
 	public ReadReportAdapter(Activity context, List<Report> data,
 			ListView goodList) {
@@ -59,10 +58,9 @@ public class ReadReportAdapter extends BaseAdapter {
 		this.data = data;
 		this.goodList = goodList;
 		this.context = context;
-		asyncImageLoader = ((CeiApplication) context.getApplication()).asyncImageLoader;
 		inflater = LayoutInflater.from(context);
 		dataHelper = ((CeiApplication) context.getApplication()).dataHelper;
-		application=(CeiApplication) context.getApplication();
+        this.bmpManager = new BitmapManager(BitmapFactory.decodeResource(context.getResources(), R.drawable.courseware_default_icon));
 	}
 
 	@Override
@@ -84,76 +82,23 @@ public class ReadReportAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(final int position, View convertView, ViewGroup parent) {
-		final Holder holder = new Holder();
-		/*
-		 * if(convertView==null){ //holder=new Holder();
-		 */convertView = inflater.inflate(R.layout.read_report_item, null);
+		final Holder holder = new Holder();convertView = inflater.inflate(R.layout.read_report_item, null);
 		holder.handImg = (ImageView) convertView
 				.findViewById(R.id.iv_goodbg_hand);
 
 		holder.title = (TextView) convertView
 				.findViewById(R.id.tv_goodbg_title);
-		holder.aName = (TextView) convertView
-				.findViewById(R.id.tv_goodbg__aname);
-		holder.price = (TextView) convertView
-				.findViewById(R.id.tv_goodbg_price);
-		holder.aNamebq = (TextView) convertView
-				.findViewById(R.id.tv_goodbg__aname_bq);
-		holder.pricebq = (TextView) convertView
-				.findViewById(R.id.tv_goodbg_price_bq);
-		holder.body = (TextView) convertView.findViewById(R.id.tv_goodbg_text);
-		/*
-		 * holder.jianjian = (ImageButton) convertView
-		 * .findViewById(R.id.ib_bg_jiejian);
-		 */
 		holder.download = (ImageButton) convertView
 				.findViewById(R.id.ib_bg_download);
 		convertView.setTag(holder);
-		/*
-		 * }else{ holder=(Holder) convertView.getTag(); }
-		 */
 		final Report report = data.get(position);
 		holder.handImg.setTag(report.getSmallPpath());
-		// holder.handImg.setImageResource(Integer.parseInt(data.get(position).get("hand").toString()));
 		holder.title.setText(report.getName());
-		holder.aName.setText(report.getAuthor());
-		holder.aNamebq.setText(application.ReportColumns.get(0).getAuthro()==null?"作者：":application.ReportColumns.get(0).getAuthro()+":");
-		holder.pricebq.setText(application.ReportColumns.get(0).getPrice()==null?"价格: ￥":application.ReportColumns.get(0).getPrice()+": ￥");
-		holder.body.setText(report.getIntro().trim());
-		if(ReadReportMainActivity.bbStart){
-			holder.price.setText(report.getPrice());
-		}else{
-			holder.price.setVisibility(View.GONE);
-			holder.pricebq.setVisibility(View.GONE);
-		}
 		ImageResourse imageResource = new ImageResourse();
 		imageResource.setIconUrl(data.get(position).getSmallPpath());
 		imageResource.setIconId(data.get(position).getId());
 		imageResource.setIconTime(data.get(position).getProtime());
-		if (drawables.containsKey(data.get(position).getSmallPpath())
-				&& drawables.get(data.get(position).getSmallPpath()) != null) {
-			holder.handImg.setBackgroundDrawable(drawables.get(data.get(position)
-					.getSmallPpath()).get());
-			Log.i("view", "缓存起作用");
-		} else {
-		asyncImageLoader.loadDrawable(imageResource, new ImageCallback() {
-
-			@Override
-			public void imageLoaded(Drawable imageDrawable, String imageUrl) {
-				ImageView img = (ImageView) goodList.findViewWithTag(report
-						.getSmallPpath());
-				if (img != null && imageDrawable != null) {
-					// img.setLayoutParams(new LinearLayout.LayoutParams(100,
-					// 130));
-					img.setScaleType(ImageView.ScaleType.FIT_CENTER);
-					img.setImageDrawable(imageDrawable);
-					drawables.put(data.get(position).getSmallPpath(),
-							new SoftReference(imageDrawable));
-				}
-
-			}
-		});
-		}
+        bmpManager.loadBitmap(data.get(position).getSmallPpath(),holder.handImg,data.get(position).getId());
 		holder.handImg.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -212,6 +157,7 @@ public class ReadReportAdapter extends BaseAdapter {
 					} else {
 						List<funId> buyReportData = ((CeiApplication) context
 								.getApplication()).buyReportData;
+                        boolean flage =false;
 						if (buyReportData != null && buyReportData.size() > 0) {
 							for (funId funId : buyReportData) {
 								if (funId.getFunid().equals(report.getId())) {
@@ -332,14 +278,8 @@ public class ReadReportAdapter extends BaseAdapter {
 	}
 
 	public class Holder {
-		// ImageView jianjian;
 		ImageView handImg;
 		TextView title;
-		TextView aName;
-		TextView price;
-		TextView aNamebq;
-		TextView pricebq;
-		TextView body;
 		ImageButton download;
 	}
 

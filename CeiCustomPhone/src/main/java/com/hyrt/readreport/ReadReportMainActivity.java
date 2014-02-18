@@ -42,6 +42,7 @@ import android.widget.TextView;
 
 public class ReadReportMainActivity extends ContainerActivity implements
 		OnClickListener, OnItemClickListener {
+
 	public static boolean bbStart;
 	public static String MODEL_NAME;
 	// 研究报告的子集业务集合
@@ -51,10 +52,9 @@ public class ReadReportMainActivity extends ContainerActivity implements
 	private CeiApplication application;
 	private StringBuilder colIDs = null;
 	private List<Report> goodReportData, newReportData;
-	private ImageView goodImg, paihangImg, fenleiImg, mianfeiImg, findImg,
-			point1, point2, point3, point4, point5, bookself;
+	private ImageView point1, point2, point3, point4, point5;
 	private GridView newsReport;
-	private TextView title, moreText, backImg;
+	private TextView moreText;
 	private Gallery goodReport;
 	private int pageindex = 1;
 	private NewsReportAdapter newsAdapter;
@@ -73,26 +73,16 @@ public class ReadReportMainActivity extends ContainerActivity implements
 						ReadReportMainActivity.this.getWindow().getDecorView(),
 						"没有数据！");
 			} else {
-				System.out.println("研究报告" + goodReportData.size());
 				GoodReportAdapter adapter = new GoodReportAdapter(
 						ReadReportMainActivity.this, goodReportData, goodReport);
 				goodReport.setAdapter(adapter);
 				goodReport.setSelection(Integer.MAX_VALUE / 2 - 3);
 				point1.setBackgroundResource(R.drawable.read_report_index_select);
-				if (goodReportData.get(0).getName() != null) {
-					title.setText(goodReportData.get(0).getName().length() > 10 ? goodReportData
-							.get(0).getName().substring(0, 9)
-							+ "..."
-							: goodReportData.get(0).getName());
-
-				}
 				newsAdapter = new NewsReportAdapter(
 						ReadReportMainActivity.this, newsReport, newReportData);
 				if (newReportData != null && newReportData.size() < 18)
 					moreText.setVisibility(View.GONE);
 				newsReport.setAdapter(newsAdapter);
-
-//				goodReport.setOnItemClickListener(ReadReportMainActivity.this);
 				newsReport.setOnItemClickListener(ReadReportMainActivity.this);
 				goodReport
 						.setOnItemSelectedListener(new OnItemSelectedListener() {
@@ -100,15 +90,6 @@ public class ReadReportMainActivity extends ContainerActivity implements
 							@Override
 							public void onItemSelected(AdapterView<?> arg0,
 									View arg1, int arg2, long arg3) {
-								Report report = (Report) arg0.getAdapter()
-										.getItem(arg2);
-								if (report != null && report.getName() != null) {
-									title.setText(report.getName().length() > 10 ? report
-											.getName().substring(0, 9) + "..."
-											: report.getName());
-								} else {
-									title.setText("");
-								}
 								if (arg2 % 5 == 0) {
 									point1.setBackgroundResource(R.drawable.read_report_index_select);
 									point2.setBackgroundResource(R.drawable.home_img_ratio);
@@ -161,22 +142,17 @@ public class ReadReportMainActivity extends ContainerActivity implements
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.read_report_main);
-		UpdateManager manager = new UpdateManager(this);
+		/*UpdateManager manager = new UpdateManager(this);
 		// 检查软件更新
-		manager.isUpdate();
-
-		// MODEL_NAME = ((CeiApplication) getApplication()).nowStart;//
-		// 获取当前业务名称。
+		manager.isUpdate();*/
 		MODEL_NAME = "研究报告";
 		columnEntry = ((CeiApplication) getApplication()).columnEntry;
 		try {
 			bbStart = columnEntry.getColumnEntryChilds().get(0).getName()
 					.equals("通用版") ? true : false;
 		} catch (Exception e) {
-			// TODO: handle exception
 		}
 		application = (CeiApplication) getApplication();
 		initView();
@@ -184,23 +160,8 @@ public class ReadReportMainActivity extends ContainerActivity implements
 	}
 
 	private void initView() {
-		// TextView topicon=(TextView)findViewById(R.id.title);
-		// topicon.setText(MODEL_NAME);
-		// backImg = (TextView) findViewById(R.id.read_report_back);
-		// backImg.setOnClickListener(this);
 		goodReport = (Gallery) findViewById(R.id.read_report_main_ga);
 		newsReport = (GridView) findViewById(R.id.read_report_main_gv);
-		title = (TextView) findViewById(R.id.read_report_title);
-		// goodImg = (ImageView) findViewById(R.id.read_report_jp);
-		// goodImg.setOnClickListener(this);
-		// paihangImg = (ImageView) findViewById(R.id.read_report_ph);
-		// paihangImg.setOnClickListener(this);
-		// fenleiImg = (ImageView) findViewById(R.id.read_report_fl);
-		// fenleiImg.setOnClickListener(this);
-		// mianfeiImg = (ImageView) findViewById(R.id.read_report_mf);
-		// mianfeiImg.setOnClickListener(this);
-		// findImg = (ImageView) findViewById(R.id.read_report_find);
-		// findImg.setOnClickListener(this);
 		moreText = (TextView) findViewById(R.id.read_report_more);
 		moreText.setOnClickListener(this);
 		point1 = (ImageView) findViewById(R.id.read_report_point1);
@@ -208,22 +169,9 @@ public class ReadReportMainActivity extends ContainerActivity implements
 		point3 = (ImageView) findViewById(R.id.read_report_point3);
 		point4 = (ImageView) findViewById(R.id.read_report_point4);
 		point5 = (ImageView) findViewById(R.id.read_report_point5);
-		// bookself = (ImageView) findViewById(R.id.read_report_bookself);
-		// bookself.setOnClickListener(this);
-
 	}
 
 	private void initData() {
-		// 更据业务ID查询业务里面的数据
-		/*
-		 * final ColumnEntry colBg = columnEntry.getColByName("精彩报告");
-		 * ColumnEntry allColBg = columnEntry.getColByName("研究报告"); if (allColBg
-		 * != null && allColBg.getId() != null && !allColBg.getId().equals(""))
-		 * { String allBgId = allColBg.getId(); colIDs = new StringBuilder();
-		 * List<ColumnEntry> allCol = columnEntry
-		 * .getEntryChildsForParent(allBgId); for (ColumnEntry columnEntry :
-		 * allCol) { colIDs.append(columnEntry.getId() + ","); } }
-		 */
 		// 更据业务ID查询业务里面的数据
 		goodReportData = new ArrayList<Report>();
 		newReportData = new ArrayList<Report>();
@@ -314,36 +262,10 @@ public class ReadReportMainActivity extends ContainerActivity implements
 
 	@Override
 	public void onClick(View v) {
-		Intent intent = null;
+		Intent intent;
 		switch (v.getId()) {
-
-		case R.id.read_report_jp:
-			intent = new Intent(this, ReadReportGoodActivity.class);
-			startActivity(intent);
-			break;
-
-		case R.id.read_report_ph:
-			intent = new Intent(this, ReadReportPH.class);
-			startActivity(intent);
-			break;
-		case R.id.read_report_fl:
-			intent = new Intent(this, ReadReportFL.class);
-			startActivity(intent);
-			break;
-		case R.id.read_report_mf:
-			intent = new Intent(this, ReadReportMF.class);
-			startActivity(intent);
-			break;
-		case R.id.read_report_bookself:
-			intent = new Intent(this, CeiShelfBookActivity.class);
-			startActivity(intent);
-			break;
 		case R.id.read_report_back:
 			intent = new Intent(this, HomePageDZB.class);
-			startActivity(intent);
-			break;
-		case R.id.read_report_find:
-			intent = new Intent(this, ReadReportFind.class);
 			startActivity(intent);
 			break;
 		case R.id.read_report_more:

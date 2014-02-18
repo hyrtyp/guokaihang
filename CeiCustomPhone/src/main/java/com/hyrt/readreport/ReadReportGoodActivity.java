@@ -30,11 +30,9 @@ public class ReadReportGoodActivity extends ContainerActivity implements
 		OnClickListener {
 	private ColumnEntry columnEntry;
 	private ListView goodList;
-	private ImageView goodImg, paihangImg, fenleiImg, mianfeiImg, homeImg,
-			findImg, bookself;
 	private List<Report> goodData;
 	private int pageindex = 1;
-	private TextView moreText, iconImg, backImg;
+	private TextView moreText;
 	ReadReportAdapter adapter;
 	private String bgId;
 	private Handler goodHandler = new Handler() {
@@ -64,34 +62,13 @@ public class ReadReportGoodActivity extends ContainerActivity implements
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.read_report_find);
 		initView();
-		// imgLight();
 		initData();
 	}
 
 	private void initView() {
 		goodList = (ListView) findViewById(R.id.read_report_data_lv);
-		// goodImg = (ImageView) findViewById(R.id.read_report_jp);
-		// goodImg.setOnClickListener(this);
-		// paihangImg = (ImageView) findViewById(R.id.read_report_ph);
-		// paihangImg.setOnClickListener(this);
-		// fenleiImg = (ImageView) findViewById(R.id.read_report_fl);
-		// fenleiImg.setOnClickListener(this);
-		// mianfeiImg = (ImageView) findViewById(R.id.read_report_mf);
-		// mianfeiImg.setOnClickListener(this);
-		/*
-		 * homeImg = (ImageView) findViewById(R.id.read_report_home);
-		 * homeImg.setOnClickListener(this);
-		 */
-		iconImg = (TextView) findViewById(R.id.read_report_topicon);
-		iconImg.setText("精彩报告");
-		bookself = (ImageView) findViewById(R.id.ib_findbg_bookshelf);
-		bookself.setOnClickListener(this);
-		// findImg = (ImageView) findViewById(R.id.read_report_find);
-		// findImg.setOnClickListener(this);
 		moreText = (TextView) findViewById(R.id.read_report_more);
 		moreText.setOnClickListener(this);
-		backImg = (TextView) findViewById(R.id.ib_findbg_back);
-		backImg.setOnClickListener(this);
 	}
 
 	private void initData() {
@@ -152,39 +129,7 @@ public class ReadReportGoodActivity extends ContainerActivity implements
 
 	@Override
 	public void onClick(View v) {
-		Intent intent = null;
 		switch (v.getId()) {
-		case R.id.read_report_jp:
-
-			break;
-		case R.id.read_report_ph:
-			intent = new Intent(this, ReadReportPH.class);
-			startActivity(intent);
-			break;
-		case R.id.read_report_fl:
-			intent = new Intent(this, ReadReportFL.class);
-			startActivity(intent);
-			break;
-		case R.id.read_report_mf:
-			intent = new Intent(this, ReadReportMF.class);
-			startActivity(intent);
-			break;
-		// case R.id.read_report_home:
-		// intent = new Intent(this, HomePageDZB.class);
-		// startActivity(intent);
-		// break;
-		case R.id.ib_findbg_bookshelf:
-			intent = new Intent(this, CeiShelfBookActivity.class);
-			startActivity(intent);
-			break;
-		case R.id.read_report_find:
-			intent = new Intent(this, ReadReportFind.class);
-			startActivity(intent);
-			break;
-		case R.id.ib_findbg_back:
-			intent = new Intent(this, ReadReportMainActivity.class);
-			startActivity(intent);
-			break;
 		case R.id.read_report_more:
 			// 加载更多
 			if (bgId != null && !bgId.equals("")) {
@@ -204,15 +149,6 @@ public class ReadReportGoodActivity extends ContainerActivity implements
 			}
 			break;
 		}
-	}
-
-	private void imgLight() {
-		goodImg.setBackgroundResource(R.drawable.read_report_jp);
-		paihangImg.setBackgroundResource(R.drawable.read_report_ph1);
-		fenleiImg.setBackgroundResource(R.drawable.read_report_fl1);
-		mianfeiImg.setBackgroundResource(R.drawable.read_report_mf1);
-		// homeImg.setBackgroundResource(R.drawable.home1);
-		findImg.setBackgroundResource(R.drawable.read_report_find1);
 	}
 
 	@Override

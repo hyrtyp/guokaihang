@@ -142,17 +142,6 @@
        android:layout_alignParentRight="true"
         android:scrollbars="vertical">
         
-        
-    <TextView
-       
-        android:layout_width="wrap_content"
-        android:layout_height="1000dp"
-        android:layout_alignBottom="@id/yjbg_read_report_pdfview"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="35dp"
-        android:id="@+id/sun_text"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-        
     </ScrollView>
 
 

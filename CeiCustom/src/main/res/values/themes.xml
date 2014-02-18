@@ -38,9 +38,5 @@
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">17sp</item>
     </style>
-    
-      <style name="MyActionBarTabTextStyle" parent="@android:style/Widget.Holo.Light.ActionBar.TabText">
-         <item name="android:textSize">20sp</item>
-    </style>
 
 </resources>

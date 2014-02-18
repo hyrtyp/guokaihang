@@ -120,7 +120,6 @@ public class CeiShelfBookActivity extends ContainerActivity implements OnClickLi
 							public boolean onItemLongClick(AdapterView<?> arg0,
 									View arg1, int arg2, long arg3) {
 								final Report report = data.get(arg2);
-//								delViewShow(report, 10);
 								alertIsSurePop(new OnClickListener() {
 
 									@Override
@@ -128,8 +127,6 @@ public class CeiShelfBookActivity extends ContainerActivity implements OnClickLi
 										popWin.dismiss();
 										data.remove(report);
 										if (dataHelper.delReport(report.getId()) == 0) {
-//											MyTools.exitShow(CeiShelfBookActivity.this, shelvesview,
-//													"删除失败");
 											showAlert("删除失败");
 											popWin.dismiss();
 											return;
@@ -142,8 +139,6 @@ public class CeiShelfBookActivity extends ContainerActivity implements OnClickLi
 											msg.what = 10;
 											handler.sendMessage(msg);
 											popWin.dismiss();
-//											MyTools.exitShow(CeiShelfBookActivity.this, shelvesview,
-//													"删除成功！");
 											showAlert("删除成功");
 										}
 									}
@@ -157,135 +152,6 @@ public class CeiShelfBookActivity extends ContainerActivity implements OnClickLi
 					public void onItemClick(AdapterView<?> arg0, View arg1,
 							final int arg2, long arg3) {
 						ShelfDownload(arg1, arg2);
-						// final Report report = data.get(arg2);
-						// final TextView tv = (TextView) arg1
-						// .findViewById(R.id.yjbg_book_item_tv);
-						// final ProgressBar bar = (ProgressBar) arg1
-						// .findViewById(R.id.yjbg_book_item_pro);
-						// if (!report.getIsLoad().equals("yes")) {
-						// Handler handler = new Handler(getLooper()) {
-						//
-						// @Override
-						// public void handleMessage(Message msg) {
-						// if (msg.arg1 > 0) {
-						// bar.setProgress(msg.arg1);
-						// tv.setText(msg.arg1 + "%");
-						// }
-						// switch (msg.arg1) {
-						// case -1:
-						// // 路劲错误
-						// tv.setText("err");
-						// dataHelper.delReport(report.getId());
-						// loadThreads.remove(report.getId());
-						// initData();
-						// if (selfAdapter != null)
-						// selfAdapter.notifyDataSetChanged();
-						// MyTools.exitShow(
-						// CeiShelfBookActivity.this,
-						// shelvesview, "下载文件为空！");
-						// break;
-						// case -2:
-						// tv.setText("err");
-						// dataHelper.delReport(report.getId());
-						// loadThreads.remove(report.getId());
-						// initData();
-						// if (selfAdapter != null)
-						// selfAdapter.notifyDataSetChanged();
-						// MyTools.exitShow(
-						// CeiShelfBookActivity.this,
-						// shelvesview, "连接网络超时！");
-						// break;
-						// case -3:
-						// tv.setText("err");
-						// dataHelper.delReport(report.getId());
-						// loadThreads.remove(report.getId());
-						// initData();
-						// if (selfAdapter != null)
-						// selfAdapter.notifyDataSetChanged();
-						// MyTools.exitShow(
-						// CeiShelfBookActivity.this,
-						// shelvesview, "文件不存在！");
-						// break;
-						// case -4:
-						// tv.setText("err");
-						// dataHelper.delReport(report.getId());
-						// loadThreads.remove(report.getId());
-						// initData();
-						// if (selfAdapter != null)
-						// selfAdapter.notifyDataSetChanged();
-						// MyTools.exitShow(
-						// CeiShelfBookActivity.this,
-						// shelvesview, "URL地址错误！");
-						// break;
-						// case -5:
-						// tv.setText("err");
-						// dataHelper.delReport(report.getId());
-						// loadThreads.remove(report.getId());
-						// initData();
-						// if (selfAdapter != null)
-						// selfAdapter.notifyDataSetChanged();
-						// MyTools.exitShow(
-						// CeiShelfBookActivity.this,
-						// shelvesview, "本地文件创建失败！");
-						// break;
-						// case -6:
-						// tv.setText("err");
-						// dataHelper.delReport(report.getId());
-						// loadThreads.remove(report.getId());
-						// initData();
-						// if (selfAdapter != null)
-						// selfAdapter.notifyDataSetChanged();
-						// MyTools.exitShow(
-						// CeiShelfBookActivity.this,
-						// shelvesview, "数据读写错误！");
-						// break;
-						// case 100:
-						// tv.setText("100%");
-						// bar.setVisibility(View.GONE);
-						// report.setIsLoad("yes");
-						// dataHelper.UpdateReportZT(report);
-						// // 统计
-						// Service.updatedownsum(report.getId(),
-						// "bg");
-						//
-						// // 下载完毕后减压文件
-						// porLayout.setVisibility(View.VISIBLE);
-						// setViewListener(data.get(arg2));
-						// loadThreads.remove(report.getId());
-						// break;
-						// }
-						// }
-						//
-						// };
-						//
-						// String path = report.getDownpath().toString();
-						// File savedir = new File(Report.SD_PATH
-						// + report.getName());
-						// if (!savedir.exists()) {
-						// savedir.mkdirs();
-						// }
-						//
-						// try {
-						// if (loadThreads.get(report.getId()) != null) {
-						// MyTools.exitShow(
-						// CeiShelfBookActivity.this,
-						// CeiShelfBookActivity.this
-						// .getWindow().getDecorView(),
-						// "正在下载！");
-						// return;
-						// } else {
-						// NewFileDownload.download(path, savedir,
-						// handler);
-						// loadThreads.put(report.getId(), "1");
-						// }
-						// } catch (Exception e) {
-						// e.printStackTrace();
-						// }
-						// } else {
-						// // 下载完毕后减压文件
-						// porLayout.setVisibility(View.VISIBLE);
-						// setViewListener(data.get(arg2));
-						// }
 					}
 				});
 				break;
@@ -300,8 +166,6 @@ public class CeiShelfBookActivity extends ContainerActivity implements OnClickLi
 							@Override
 							public void onItemClick(AdapterView<?> arg0,
 									View arg1, final int arg2, long arg3) {
-								// setViewListener(data.get(arg2), arg1);
-
 								final Report report = data.get(arg2);
 								final TextView tv = (TextView) arg1
 										.findViewById(R.id.yjbg_book_list_item_tv);
@@ -517,11 +381,7 @@ public class CeiShelfBookActivity extends ContainerActivity implements OnClickLi
 		heng = (ImageView) findViewById(R.id.read_report_bookself_heng);
 		shu = (ImageView) findViewById(R.id.read_report_bookself_shu);
 		shelvesListView = (ListView) findViewById(R.id.yjbg_book_shelves);
-		shezhi = (ImageView) findViewById(R.id.read_report_bookself_sz);
-		shezhi.setOnClickListener(this);
 		shelvesview = (ShelvesView) findViewById(R.id.grid_shelves);
-		backImg = (ImageView) findViewById(R.id.ib_findbg_back);
-		backImg.setOnClickListener(this);
 		RelativeLayout layout = (RelativeLayout) findViewById(R.id.mainlayout);
 		layout.setBackgroundResource(R.drawable.read_report_bookshelf_bg_qmu);
 	}
@@ -898,20 +758,8 @@ public class CeiShelfBookActivity extends ContainerActivity implements OnClickLi
 						"下载完毕再切换视图！");
 				return;
 			}
-			// if (application.bgindex == 2) {
-			// findViewById(R.id.mainlayout).setBackgroundResource(
-			// R.drawable.read_report_bookshelf_bg_qmu);
-			// } else if (application.bgindex == 3) {
-			// findViewById(R.id.mainlayout).setBackgroundResource(
-			// R.drawable.read_report_bookshelf_bg_smu);
-			// } else if (application.bgindex == 0) {
-			// findViewById(R.id.mainlayout).setBackgroundResource(
-			// R.drawable.read_report_bookself_bg);
-			// }
 			findViewById(R.id.mainlayout).setBackgroundResource(
 					R.drawable.read_report_bookshelf_bg_qmu);
-			// data.clear();
-			// data.addAll(dataHelper.getReportList());
 			shelvesListView.setVisibility(View.GONE);
 			shelvesview.setVisibility(View.VISIBLE);
 			Message msg = new Message();
@@ -1028,6 +876,8 @@ public class CeiShelfBookActivity extends ContainerActivity implements OnClickLi
 					Message msg = new Message();
 					msg.what = what;
 					handler.sendMessage(msg);
+			// data.clear();
+			// data.addAll(dataHelper.getReportList());
 					mPopupWindow.dismiss();
 //					MyTools.exitShow(CeiShelfBookActivity.this, shelvesview,
 //							"删除成功！");

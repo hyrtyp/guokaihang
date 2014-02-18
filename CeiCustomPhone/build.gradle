@@ -1,11 +1,3 @@
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:0.7.+'
-    }
-}
 apply plugin: 'android'
 apply plugin: 'maven'
 apply plugin: 'signing'
@@ -17,10 +9,6 @@ def artifact = 'cei-gk-custom'
 project.ext.set('artifact', artifact)
 def isReleaseVersion = !version.endsWith('SNAPSHOT')
 archivesBaseName = 'gkaphone_'+version
-
-repositories {
-    mavenCentral()
-}
 
 android {
 
@@ -61,7 +49,7 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: "$buildDir/native-libs", include: 'native-libs.jar')
+    compile fileTree(dir: "$buildDir/native-libs", include: '*.jar')
     compile fileTree(dir: 'libs', include: '*.jar')
     compile project(':CeiStyle')
 }

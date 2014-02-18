@@ -40,7 +40,7 @@ import com.hyrt.readreport.CeiShelfBookActivity;
  * 
  */
 public class PersonCenter extends ContainerActivity implements OnClickListener {
-	private Button qccount_info;
+
 	private TextView person_info,change_password;
 	private RelativeLayout re;
 	private Intent intent;
@@ -61,7 +61,6 @@ public class PersonCenter extends ContainerActivity implements OnClickListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		// ContainerActivity.activities.add(this);
 		setContentView(R.layout.personcentered);
 		overridePendingTransition(R.anim.push_in, R.anim.push_out);
 		SharedPreferences settings = getSharedPreferences("loginInfo",
@@ -71,18 +70,10 @@ public class PersonCenter extends ContainerActivity implements OnClickListener {
 	}
 
 	private void init() {
-		// LinearLayout bottomsLl = (LinearLayout)
-		// findViewById(R.id.bottoms_Ll);
-		// for (int i = 0; i < bottomsLl.getChildCount(); i++) {
-		// ((RelativeLayout) (bottomsLl.getChildAt(i))).getChildAt(0)
-		// .setOnClickListener(this);
-		// }
 		findViewById(R.id.person_info).setOnClickListener(this);
-		findViewById(R.id.qccount_info).setOnClickListener(this);
 		findViewById(R.id.change_password).setOnClickListener(this);
 		re = (RelativeLayout) findViewById(R.id.pc_re);
 		person_info = (TextView) findViewById(R.id.person_info);
-		qccount_info = (Button) findViewById(R.id.qccount_info);
 		change_password = (TextView) findViewById(R.id.change_password);
 		
 		intent_CeiShelfBookActivity.setClass(this, CeiShelfBookActivity.class);
@@ -100,30 +91,6 @@ public class PersonCenter extends ContainerActivity implements OnClickListener {
 
 		// SwitchActivity(0);
 	}
-
-	@Override
-	protected void onPause() {
-		super.onPause();
-//		PersonCenter.this.finish();
-	}
-
-	// void SwitchActivity(int id) {
-	// re.removeAllViews();
-	// Intent intent = null;
-	// if (id == 0) {
-	// intent = new Intent(PersonCenter.this, PersonInfo.class);
-	// } else if (id == 1) {
-	// intent = new Intent(PersonCenter.this, QccountInfo.class);
-	// } else if (id == 2) {
-	// intent = new Intent(PersonCenter.this, ChangePassword.class);
-	// }
-	// intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-	// @SuppressWarnings("deprecation")
-	// Window subActivity = getLocalActivityManager().startActivity(
-	// "subActivity", intent);
-	// re.addView(subActivity.getDecorView(), LayoutParams.FILL_PARENT,
-	// LayoutParams.FILL_PARENT);
-	// }
 
 	private void switchContent(Fragment from, Fragment to) {
 		if (mContent != to) {
@@ -158,13 +125,6 @@ public class PersonCenter extends ContainerActivity implements OnClickListener {
 			startActivity(intent);
 			break;
 		case R.id.person_info:
-//			findViewById(R.id.person_info).setBackgroundResource(
-//					R.drawable.grzx_1_0);
-//			findViewById(R.id.qccount_info).setBackgroundResource(
-//					R.drawable.grzx_2_1);
-//			findViewById(R.id.change_password).setBackgroundResource(
-//					R.drawable.grzx_3_1);
-			// SwitchActivity(0);
 			person_info.setTextColor(Color.WHITE);
 			change_password.setTextColor(Color.BLUE);
 			person_info.setBackgroundResource(R.drawable.phone_study_menu_select);
@@ -175,26 +135,12 @@ public class PersonCenter extends ContainerActivity implements OnClickListener {
 			switchContent(mContent, fragmentPersonInfo);
 			break;
 		case R.id.qccount_info:
-//			findViewById(R.id.person_info).setBackgroundResource(
-//					R.drawable.grzx_1_1);
-//			findViewById(R.id.qccount_info).setBackgroundResource(
-//					R.drawable.grzx_2_0);
-//			findViewById(R.id.change_password).setBackgroundResource(
-//					R.drawable.grzx_3_1);
-			// SwitchActivity(1);
 			if (fragmentQccountInfo == null) {
 				fragmentQccountInfo = new QccountInfo();
 			}
 			switchContent(mContent, fragmentQccountInfo);
 			break;
 		case R.id.change_password:
-//			findViewById(R.id.person_info).setBackgroundResource(
-//					R.drawable.grzx_1_1);
-//			findViewById(R.id.qccount_info).setBackgroundResource(
-//					R.drawable.grzx_2_1);
-//			findViewById(R.id.change_password).setBackgroundResource(
-//					R.drawable.grzx_3_0);
-			// SwitchActivity(2);
 			person_info.setTextColor(Color.BLUE);
 			change_password.setTextColor(Color.WHITE);
 			person_info.setBackgroundResource(R.drawable.menu_transbg);
@@ -222,10 +168,6 @@ public class PersonCenter extends ContainerActivity implements OnClickListener {
 
 		@Override
 		public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-//			menu.add(loginName)
-//			.setShowAsAction(
-//					MenuItem.SHOW_AS_ACTION_IF_ROOM
-//							| MenuItem.SHOW_AS_ACTION_WITH_TEXT);
 			menu.add("书架")
 					.setIcon(R.drawable.read_report_bookshelf)
 					.setIntent(intent_CeiShelfBookActivity)
