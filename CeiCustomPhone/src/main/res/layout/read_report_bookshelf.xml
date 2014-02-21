@@ -55,7 +55,6 @@
                 android:id="@id/read_report_bookself_et"
                 style="@style/search_et"
                 android:layout_centerInParent="true"
-                android:background="@drawable/read_report_find_eidtext"
                 android:drawableLeft="@drawable/read_report_search"
                 android:gravity="center_vertical"
                 android:hint="搜索"
@@ -75,6 +74,7 @@
             android:cacheColorHint="#00000000"
             android:gravity="center"
             android:numColumns="3"
+            android:verticalSpacing="30dp"
             android:paddingLeft="@dimen/screenview_margin_small"
             android:paddingRight="@dimen/screenview_margin_small" />
 

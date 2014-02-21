@@ -10,6 +10,7 @@ import com.hyrt.cei.db.DataHelper;
 //import com.hyrt.cei.ui.information.funId;
 //import com.hyrt.cei.ui.main.Welcome;
 import com.hyrt.cei.util.AsyncImageLoader;
+import com.hyrt.cei.util.DPIUtil;
 import com.hyrt.cei.util.MyTools;
 import com.hyrt.cei.util.WriteOrRead;
 import com.hyrt.cei.util.XmlUtil;
@@ -37,9 +38,12 @@ public class CeiApplication extends Application {
 	public List<funId> buyReportData;
 	public List<ReportColumn> ReportColumns;
 	public List<Class> activitys;
+    private static CeiApplication that;
 
 	@Override
 	public void onCreate() {
+        that = this;
+        DPIUtil.setDensity(getResources().getDisplayMetrics().density);
 		activitys = new ArrayList<Class>();
 		asyncImageLoader = new AsyncImageLoader(this);
 		columnEntry = new ColumnEntry();
@@ -143,5 +147,9 @@ public class CeiApplication extends Application {
 		XmlUtil.parseInitSelfResources(result, columnEntry);
 		super.onLowMemory();
 	}
+
+    public static CeiApplication getInstance(){
+        return that;
+    }
 
 }

@@ -102,10 +102,9 @@ public class BookSelfAdapter extends BaseAdapter {
 
                         drawables.put(report.getSmallPpath(), new
                                 SoftReference<Drawable>(imageDrawable));
-                        img.setLayoutParams(new LinearLayout.LayoutParams(360, 450));
-                        img.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                        //img.setLayoutParams(new LinearLayout.LayoutParams(360, 450));
+                        //img.setScaleType(ImageView.ScaleType.FIT_CENTER);
                         img.setImageDrawable(imageDrawable);
-                        Log.i("view", position + "aic");
                     }
                 }
             });
@@ -118,7 +117,7 @@ public class BookSelfAdapter extends BaseAdapter {
             bar.setVisibility(View.GONE);
             tv.setText("100%");
         }
-        convertView.setLayoutParams(new AbsListView.LayoutParams(125, 210));
+        //convertView.setLayoutParams(new AbsListView.LayoutParams(125, 210));
         return convertView;
     }
 }

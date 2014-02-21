@@ -22,6 +22,7 @@ public class FlTableAdapter extends BaseAdapter {
 	private Context context;
 	private LayoutInflater mInflater;
 	private int index;
+    public View firstView;
 
 	public FlTableAdapter(Context context, List<ReportpaitElement> dataTable,int index) {
 		this.dataTable = dataTable;
@@ -46,6 +47,8 @@ public class FlTableAdapter extends BaseAdapter {
 		if (convertView == null) {
 			convertView = mInflater.inflate(R.layout.read_report_fltable, null);
 		}
+        if(firstView == null)
+            firstView = convertView;
 		TextView tv = (TextView) ((RelativeLayout) convertView).getChildAt(1);
 		tv.setText(dataTable.get(position).getOutlineTitle());
 		if(position==index){

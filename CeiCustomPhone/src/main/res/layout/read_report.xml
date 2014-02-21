@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
@@ -12,15 +13,30 @@
         android:background="@drawable/guokaihang_topbg"
         android:gravity="center" >
 
+        <ImageView
+            android:layout_gravity="center_vertical|left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="?android:homeAsUpIndicator"
+            tools:ignore="NewApi" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="\u8FD4\u56DE"
+            android:id="@+id/cei_back"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@android:color/white"/>
+
         <TextView
             android:id="@id/yjbg_read_report_title"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20.0dip"
+            android:layout_marginLeft="@dimen/view_margin"
             android:singleLine="true"
             android:text="......pdf"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="#ffffffff"
-            android:textSize="28.0px"
             android:textStyle="bold" />
     </LinearLayout>
 
@@ -44,8 +60,8 @@
             android:singleLine="true"
             android:text="更多"
             android:textColor="#ffffffff"
-            android:textSize="20.0px"
-            android:paddingTop="20px"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:paddingTop="@dimen/padding_medium"
             android:layout_alignParentRight="true"/>
 
         <FrameLayout
@@ -69,7 +85,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    android:paddingTop="11.0dip" >
+                    android:paddingTop="@dimen/padding_small" >
 
                     <ImageView
                         android:id="@id/yjbg_read_report_over"
@@ -128,7 +144,7 @@
         android:id="@id/yjbg_read_report_pdfview"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-          android:layout_marginRight="5dp"
+          android:layout_marginRight="@dimen/view_margin_smallest"
         android:layout_above="@id/bottom"
         android:layout_below="@id/top"
         android:background="#FFFFFFFF" />
@@ -137,10 +153,20 @@
         android:layout_height="fill_parent"
         android:background="#FFFFFFFF"
         android:id="@+id/sun_scrollview"
-          android:layout_below="@id/top"
-          android:layout_above="@id/bottom"
-       android:layout_alignParentRight="true"
+        android:layout_below="@id/top"
+        android:layout_above="@id/bottom"
+        android:layout_alignParentRight="true"
         android:scrollbars="vertical">
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="2000dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="35dp"
+            android:id="@+id/sun_text"
+            android:text="111111111111111111111111111111111111111111111"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
         
     </ScrollView>
 

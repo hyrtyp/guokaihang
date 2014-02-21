@@ -21,21 +21,7 @@
     <style name="Theme.Cei" parent="Theme.Sherlock">
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowContentOverlay">@null</item>
-        	<item name="android:textCursorDrawable">@null</item>
-    </style>
-    
-    <!-- v11  v14 -->
-    <style name="Theme.Cei.v" parent="Sherlock.__Theme">
-        <item name="android:windowFullscreen">true</item>
-        <item name="android:windowContentOverlay">@null</item>
-        	<item name="android:textCursorDrawable">@null</item>
     </style>
 
-    <!-- v11  v14 -->
-
-    <style name="Widget.Cei.ActionBar.Title.v" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">17sp</item>
-    </style>
 
 </resources>

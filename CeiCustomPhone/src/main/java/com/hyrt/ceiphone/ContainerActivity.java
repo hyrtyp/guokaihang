@@ -5,6 +5,8 @@ import java.util.List;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
+
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -30,6 +32,7 @@ import com.hyrt.cei.application.CeiApplication;
 import com.hyrt.cei.ui.common.LoginActivity;
 import com.hyrt.cei.ui.personcenter.PersonCenter;
 import com.hyrt.cei.util.AsyncImageLoader;
+import com.hyrt.cei.util.TextDrawable;
 import com.hyrt.cei.vo.ColumnEntry;
 import com.hyrt.cei.vo.ImageResourse;
 import com.hyrt.ceiphone.common.Announcement;
@@ -39,6 +42,7 @@ import com.hyrt.readreport.CeiShelfBookActivity;
 import com.hyrt.readreport.ReadReportFL;
 import com.hyrt.readreport.ReadReportFind;
 import com.hyrt.readreport.ReadReportMainActivity;
+import com.hyrt.readreport.ReportIntro;
 import com.poqop.document.BaseViewerActivity;
 import com.poqop.document.MainBrowserActivity;
 
@@ -91,9 +95,10 @@ public class ContainerActivity extends SherlockFragmentActivity {
 		switch (item.getItemId()) {
 		// Respond to the action bar's Up/Home button
 		case android.R.id.home:
-			for (int i = activities.size() - 1; i > 0; i--) {
+			/*for (int i = activities.size() - 1; i > 0; i--) {
 				activities.get(i).finish();
-			}
+			}*/
+            this.finish();
 			break;
 		}
 		return super.onOptionsItemSelected(item);
@@ -107,7 +112,7 @@ public class ContainerActivity extends SherlockFragmentActivity {
 			getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 		} else {
 			getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-			getSupportActionBar().setIcon(getResources().getDrawable(R.drawable.cei_back));
+            getSupportActionBar().setIcon(R.drawable.cei_back);
 		}
 
 		ColumnEntry columnEntry = ((CeiApplication) getApplication()).columnEntry;
@@ -196,41 +201,40 @@ public class ContainerActivity extends SherlockFragmentActivity {
 		@Override
 	    public boolean onOptionsItemSelected(final MenuItem item) {
 			if(item.getTitle().equals("退出")){
-			View view = LayoutInflater.from(getActivity()).inflate(
-					R.layout.pop_exit_show, null);
-			final PopupWindow mPopupWindow = new PopupWindow(view,
-					LayoutParams.MATCH_PARENT,
-					LayoutParams.MATCH_PARENT);
-			mPopupWindow.setFocusable(true);
-			mPopupWindow.setTouchable(true);
-			mPopupWindow.setOutsideTouchable(true);
-			mPopupWindow.setBackgroundDrawable(new BitmapDrawable());
-			TextView textTitle = (TextView) view
-					.findViewById(R.id.pop_exit_show_title);
-			textTitle.setText("确认退出此应用吗！");
-			view.findViewById(R.id.pop_exit_show_yes)
-					.setOnClickListener(new OnClickListener() {
+                View view = LayoutInflater.from(getActivity()).inflate(
+                        R.layout.pop_exit_show, null);
+                final PopupWindow mPopupWindow = new PopupWindow(view,
+                        LayoutParams.MATCH_PARENT,
+                        LayoutParams.MATCH_PARENT);
+                mPopupWindow.setFocusable(true);
+                mPopupWindow.setTouchable(true);
+                mPopupWindow.setOutsideTouchable(true);
+                mPopupWindow.setBackgroundDrawable(new BitmapDrawable());
+                TextView textTitle = (TextView) view
+                        .findViewById(R.id.pop_exit_show_title);
+                textTitle.setText("确认退出此应用吗！");
+                view.findViewById(R.id.pop_exit_show_yes)
+                        .setOnClickListener(new OnClickListener() {
+                         @Override
+                            public void onClick(View v) {
+                                mPopupWindow.dismiss();
 
-						@Override
-						public void onClick(View v) {
-							mPopupWindow.dismiss();
-							
-						    	  for(int i=0;i<activities.size();i++){
-						    		  activities.get(i).finish();
-						    	  }
-						      }
-						
-					});
-			view.findViewById(R.id.pop_exit_show_exit)
-					.setOnClickListener(new OnClickListener() {
+                                for (int i = 0; i < activities.size(); i++) {
+                                    activities.get(i).finish();
+                                }
+                            }
 
-						@Override
-						public void onClick(View v) {
-							mPopupWindow.dismiss();
-						}
-					});
-			mPopupWindow.showAtLocation(((Activity) getActivity())
-					.getWindow().getDecorView(), Gravity.CENTER, 0, 0);
+                        });
+                view.findViewById(R.id.pop_exit_show_exit)
+                        .setOnClickListener(new OnClickListener() {
+
+                            @Override
+                            public void onClick(View v) {
+                                mPopupWindow.dismiss();
+                            }
+                        });
+                mPopupWindow.showAtLocation(((Activity) getActivity())
+                        .getWindow().getDecorView(), Gravity.CENTER, 0, 0);
 			}
 	        return false;
 	    }
@@ -255,7 +259,9 @@ public class ContainerActivity extends SherlockFragmentActivity {
 		ImageView imagetitie=(ImageView)viewTitleBar.findViewById(R.id.title);
 		TextView textView1 = (TextView)viewTitleBar.findViewById(R.id.textView1);
 		if(this instanceof ReadReportMainActivity){
-			
+            imagetitie.setVisibility(View.GONE);
+            textView1.setVisibility(View.VISIBLE);
+            textView1.setText("客户信息服务周刊");
 		}else if(this instanceof ReadReportFL){
 			imagetitie.setVisibility(View.GONE);
 			textView1.setVisibility(View.VISIBLE);
@@ -280,12 +286,15 @@ public class ContainerActivity extends SherlockFragmentActivity {
 			imagetitie.setVisibility(View.GONE);
 			textView1.setVisibility(View.VISIBLE);
 			textView1.setText("关于我们");
-		}
-		else if(this instanceof CeiShelfBookActivity){
+		}else if(this instanceof CeiShelfBookActivity){
 			imagetitie.setVisibility(View.GONE);
 			textView1.setVisibility(View.VISIBLE);
 			textView1.setText("我的书架");
-		}
+		}else if(this instanceof ReportIntro){
+            imagetitie.setVisibility(View.GONE);
+            textView1.setVisibility(View.VISIBLE);
+            textView1.setText("报告详细");
+        }
 		getSupportActionBar().setCustomView(viewTitleBar, lp);
 		getSupportActionBar().setDisplayShowCustomEnabled(true);
 	}

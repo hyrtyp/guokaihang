@@ -84,21 +84,25 @@ public class ReadReportFL extends ContainerActivity implements OnClickListener {
 						// 加载默认数据
 						nowId = secondData.get(0).getId();
 						if (((CeiApplication) getApplication()).isNet()) {
-							String reportData = Service
-									.queryAllClassTypeReport(nowId, pageindex
-											+ "");
-							try {
-								findData = XmlUtil.parseReport(reportData);
-								// 保存数据库
-								for (Report report : findData) {
-									report.setPartitiontID(nowId);
-									dataHelper.saveAllReport(report);
-								}
-								findHandler.sendEmptyMessage(2);
-							} catch (Exception e) {
-								MyTools.showPushXml(getApplicationContext());
-								e.printStackTrace();
-							}
+                            new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    String reportData = Service
+                                            .queryAllClassTypeReport(nowId, pageindex
+                                                    + "");
+                                    try {
+                                        findData = XmlUtil.parseReport(reportData);
+                                        // 保存数据库
+                                        for (Report report : findData) {
+                                            report.setPartitiontID(nowId);
+                                            dataHelper.saveAllReport(report);
+                                        }
+                                        findHandler.sendEmptyMessage(2);
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            }).start();
 						}
 					} else if (!firstData.get(0).isMhasChild()) {
 						nowId = firstData.get(0).getId();
@@ -236,7 +240,6 @@ public class ReadReportFL extends ContainerActivity implements OnClickListener {
 		columnEntry = ((CeiApplication) getApplication()).columnEntry;
 		dataHelper = ((CeiApplication) getApplication()).dataHelper;
 		initView();
-		// imgLight();
 		initData();
 	}
 
@@ -246,8 +249,6 @@ public class ReadReportFL extends ContainerActivity implements OnClickListener {
 		flTable.setVisibility(View.VISIBLE);
 		flGridView1 = (GGridView) findViewById(R.id.read_report_fl_gv);
 		flGridView2 = (GGridView) findViewById(R.id.read_report_fl_gv2);
-		// findImg = (ImageView) findViewById(R.id.read_report_find);
-		// findImg.setOnClickListener(this);
 		moreText = (TextView) findViewById(R.id.read_report_more);
 		moreText.setOnClickListener(this);
 	}

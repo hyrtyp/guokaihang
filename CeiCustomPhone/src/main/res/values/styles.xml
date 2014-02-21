@@ -13,7 +13,7 @@
         <item name="android:maxLength">20</item>
     </style>
     <style name="yangshi_3">
-        <item name="android:textSize">24.0px</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
         <item name="android:maxLines">1</item>
         <item name="android:maxLength">4</item>
     </style>
@@ -27,7 +27,7 @@
         <item name="android:maxLength">8</item>
     </style>
     <style name="yangshi_pad_title">
-        <item name="android:textSize">30.0px</item>
+        <item name="android:textSize">16sp</item>
         <item name="android:textColor">#ffffffff</item>
     </style>
     <style name="yangshi_phone_title_big">
@@ -109,6 +109,7 @@
         <item name="android:singleLine">true</item>
         <item name="android:textColor">@android:color/black</item>
         <item name="android:hint">输入搜索内容</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
     </style>
 
     <!--内容文本框-->
@@ -172,4 +173,9 @@
         <item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
         <item name="android:background">@drawable/phone_study_menu_select</item>
     </style>
+
+    <style name="Theme.Pap.TextAppearance.Small" parent="@android:style/TextAppearance.Small">
+        <item name="android:textColor">#FFFFFFFF</item>
+    </style>
+
 </resources>

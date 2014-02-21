@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:background="#ffffffff"
     android:layout_width="300.0dip"
-    android:layout_height="wrap_content"
+    android:layout_height="120dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <ImageView

@@ -10,9 +10,10 @@ buildscript {
             }
             url uri(repositoryUrl+'/nexus/content/groups/public/')
         }
-
+        mavenLocal()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:0.8.+'
+        classpath 'com.stanfy.spoon:spoon-gradle-plugin:0.9.+'
     }
 }

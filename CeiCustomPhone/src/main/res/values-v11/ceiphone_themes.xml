@@ -1,9 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    
-    
-    
-    <style name="Widget.Cei.ActionBar" parent="@android:style/Widget.Holo.Light.ActionBar.Solid">
+
+    <!-- v11  v14 -->
+    <style name="Theme.Cei.v" parent="Sherlock.__Theme">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:textAppearanceSmall">@style/Theme.Pap.TextAppearance.Small</item>
+        <item name="android:actionMenuTextAppearance">?android:attr/textAppearanceSmall</item>
+    </style>
+
+    <!-- v11  v14 -->
+
+    <style name="Widget.Cei.ActionBar.Title.v">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">17sp</item>
+    </style>
+
+    <style name="Widget.Cei.ActionBar" parent="@android:style/Widget.Holo.ActionBar">
         <item name="android:background">@drawable/guokaihang_topbg</item>
         <item name="android:titleTextStyle">@style/Widget.Cei.ActionBar.Title.v</item>
     </style>

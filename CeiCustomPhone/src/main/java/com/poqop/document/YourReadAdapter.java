@@ -9,6 +9,7 @@ import com.poqop.document.Dao.MyReadDao;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -80,6 +81,7 @@ public class YourReadAdapter extends BaseAdapter {
 		final Map<String, String> map = list.get(position);
 		TextView textView=(TextView) convertView.findViewById(R.id.yjbg_pop_shuqian_title);
 		textView.setText((name.length()>7?name.substring(0, 7)+"...":name)+ (Integer.parseInt(map.get("pageNo"))+1)+"页");
+        textView.setTextColor(Color.BLACK);
 		//textView.setText(map.get("bookName").substring(map.get("bookName").lastIndexOf("/")+1, map.get("bookName").length())+ map.get("pageNo")+"页");
 		ImageView imageButton = (ImageView) convertView.findViewById(R.id.yjbg_report_shuqian_bianji);
 		imageButton.setOnClickListener(new OnClickListener() {

@@ -46,6 +46,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemSelectedListener;
 
+import com.hyrt.cei.util.DPIUtil;
 import com.hyrt.cei.util.EncryptDecryption;
 import com.hyrt.cei.util.MyTools;
 import com.hyrt.cei.vo.Report;
@@ -186,6 +187,12 @@ public abstract class BaseViewerActivity extends Activity implements
 		documentView.showDocument();
 
 		viewerPreferences.addRecent(getIntent().getData());
+        findViewById(R.id.cei_back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BaseViewerActivity.this.finish();
+            }
+        });
 
 	}
 
@@ -295,7 +302,7 @@ public abstract class BaseViewerActivity extends Activity implements
 				View contentView = LayoutInflater.from(getApplicationContext())
 						.inflate(R.layout.read_report_pop_mulu, null);
 				final PopupWindow mPopupWindow = new PopupWindow(contentView,
-						350, 500);
+                        DPIUtil.dip2px(250), DPIUtil.dip2px(300));
 				ListView view = (ListView) contentView
 						.findViewById(R.id.yjbg_mulu_lv);
 				List<String> muluData = new ArrayList<String>();
@@ -374,7 +381,7 @@ public abstract class BaseViewerActivity extends Activity implements
 						.inflate(R.layout.read_report_light, null);
 				// 声明一个弹出框
 				final PopupWindow mPopupWindow = new PopupWindow(contentView,
-						450, 300);
+                        DPIUtil.dip2px(300), DPIUtil.dip2px(250));
 				mPopupWindow.setFocusable(true);
 				mPopupWindow.setTouchable(true); // 设置PopupWindow可触摸
 				mPopupWindow.setOutsideTouchable(true); // 设置非PopupWindow区域可触摸
@@ -474,7 +481,7 @@ public abstract class BaseViewerActivity extends Activity implements
 						.inflate(R.layout.read_report_light, null);
 				// 声明一个弹出框
 				final PopupWindow mPopupWindow = new PopupWindow(contentView,
-						450, 300);
+                        DPIUtil.dip2px(300), DPIUtil.dip2px(250));
 				mPopupWindow.setFocusable(true);
 				mPopupWindow.setTouchable(true); // 设置PopupWindow可触摸
 				mPopupWindow.setOutsideTouchable(true); // 设置非PopupWindow区域可触摸
@@ -584,7 +591,7 @@ public abstract class BaseViewerActivity extends Activity implements
 				View contentView = LayoutInflater.from(getApplicationContext())
 						.inflate(R.layout.read_report_pop_add_shuqian, null);
 				final PopupWindow mPopupWindow = new PopupWindow(contentView,
-						400, 200);
+                        DPIUtil.dip2px(300), DPIUtil.dip2px(120));
 				mPopupWindow.setFocusable(true);
 				mPopupWindow.setTouchable(true); // 设置PopupWindow可触摸
 				mPopupWindow.setOutsideTouchable(true); // 设置非PopupWindow区域可触摸
@@ -665,8 +672,7 @@ public abstract class BaseViewerActivity extends Activity implements
 				// pop实现字体大小调节
 				View contentView = LayoutInflater.from(getApplicationContext())
 						.inflate(R.layout.read_report_pop_mulu, null);
-				final PopupWindow mPopupWindow = new PopupWindow(contentView,
-						350, 250);
+				final PopupWindow mPopupWindow = new PopupWindow(contentView, DPIUtil.dip2px(200), DPIUtil.dip2px(300));
 				ListView view = (ListView) contentView
 						.findViewById(R.id.yjbg_mulu_lv);
 

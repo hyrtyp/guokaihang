@@ -1,6 +1,27 @@
+buildscript {
+    def repositoryUrl = project.hasProperty('sonatypeUrl') ? sonatypeUrl : 'http://127.0.0.1:8081'
+    def repositoryUsername = project.hasProperty('sonatypeUsername') ? sonatypeUsername : 'admin'
+    def repositoryPassword = project.hasProperty('sonatypePassword') ? sonatypePassword : 'admin123'
+    repositories {
+        maven {
+            credentials {
+                username repositoryUsername
+                password repositoryPassword
+            }
+            url uri(repositoryUrl+'/nexus/content/groups/public/')
+        }
+        mavenLocal()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.8.+'
+        classpath 'com.stanfy.spoon:spoon-gradle-plugin:0.9.+'
+    }
+}
+
 apply plugin: 'android'
 apply plugin: 'maven'
 apply plugin: 'signing'
+apply plugin: 'spoon'
 
 
 group  = 'com.hyrt.ceicustom'
@@ -52,6 +73,10 @@ dependencies {
     compile fileTree(dir: "$buildDir/native-libs", include: '*.jar')
     compile fileTree(dir: 'libs', include: '*.jar')
     compile project(':CeiStyle')
+    instrumentTestCompile 'com.squareup.spoon:spoon-client:1.0.5'
+    instrumentTestCompile 'com.jayway.android.robotium:robotium-solo:4.3'
+    instrumentTestCompile 'com.squareup:fest-android:1.0.7'
+    instrumentTestCompile 'org.mockito:mockito-core:1.9.5-rc1'
 }
 
 task nativeLibsToJar(type: Zip, description: 'create a jar archive of the native libs') {

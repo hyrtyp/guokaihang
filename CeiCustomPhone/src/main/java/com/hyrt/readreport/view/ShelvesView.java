@@ -21,6 +21,8 @@ import java.io.Serializable;
 
 import com.hyrt.ceiphone.R;
 
+import android.graphics.NinePatch;
+import android.graphics.Rect;
 import android.view.WindowManager;
 import android.widget.GridView;
 import android.app.Activity;
@@ -41,7 +43,6 @@ public class ShelvesView extends GridView implements Serializable{
 	private Bitmap mShelfBackground;
 	private int mShelfWidth;
 	private int mShelfHeight;
-	Bitmap shelfBackground1;
 
 	public ShelvesView(Context context) {
 		super(context);
@@ -63,23 +64,14 @@ public class ShelvesView extends GridView implements Serializable{
 				"BookSelfColor", Activity.MODE_PRIVATE);
 		int col = settings.getInt("back", 0);
 		Resources resources = context.getResources();
-		Bitmap shelfBackground=null;
+		Bitmap shelfBackground;
 		if (col != 0) {
 			shelfBackground = BitmapFactory.decodeResource(
 					resources, col);
 		} else {
-			if(getResources().getDisplayMetrics().widthPixels == 540){
-				shelfBackground = BitmapFactory.decodeResource(
-						resources, R.drawable.shelf_panel_540);
-			}else if(getResources().getDisplayMetrics().widthPixels == 720){
-				shelfBackground = BitmapFactory.decodeResource(
-						resources, R.drawable.shelf_panel_720);
-			}else{
-				shelfBackground = BitmapFactory.decodeResource(
-						resources, R.drawable.shelf_panel);
-			}
+		    shelfBackground = BitmapFactory.decodeResource(
+			resources, R.drawable.shelf_panel);
 		}
-		
 
 		if (shelfBackground != null) {
 			mShelfWidth = shelfBackground.getWidth();
@@ -93,18 +85,23 @@ public class ShelvesView extends GridView implements Serializable{
 	protected void dispatchDraw(Canvas canvas) {
 		final int count = getChildCount();
 		final int top = count > 0 ? getChildAt(0).getTop() : 0;
-		final int shelfWidth = mShelfWidth;
 		final int shelfHeight = mShelfHeight;
 		final int width = getWidth();
 		final int height = getHeight();
-		final Bitmap background = mShelfBackground;
+        final int shelfWidth = width;
 		for (int x = 0; x < width; x += shelfWidth) {
 			for (int y = top; y < height; y += shelfHeight) {
-				canvas.drawBitmap(background, x, y, null);
+                drawNinepath(canvas, R.drawable.shelf_panel_ninepath, new Rect(x,y,width,y+shelfHeight));
 			}
 		}
-         
-		super.dispatchDraw(canvas);
+
+        super.dispatchDraw(canvas);
 	}
+
+    public void drawNinepath(Canvas c, int id, Rect r1){
+        Bitmap bmp= BitmapFactory.decodeResource(getResources(), id);
+        NinePatch patch = new NinePatch(bmp, bmp.getNinePatchChunk(), null);
+        patch.draw(c, r1);
+    }
 
 }

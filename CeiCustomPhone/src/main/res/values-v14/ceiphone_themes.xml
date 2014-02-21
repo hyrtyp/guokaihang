@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
     
-    <style name="Widget.Cei.ActionBar" parent="@android:style/Widget.Holo.ActionBar">
+    <style name="Widget.Cei.ActionBar" parent="@android:style/Widget.Holo.Light.ActionBar.Solid">
         <item name="android:background">@drawable/guokaihang_topbg</item>
         <item name="android:titleTextStyle">@style/Widget.Cei.ActionBar.Title.v</item>
     </style>

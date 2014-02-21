@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.hyrt.cei.util.DPIUtil;
 
 public class ReportMuluAdapter extends BaseAdapter {
 	private List<String> data;
@@ -59,7 +62,7 @@ public class ReportMuluAdapter extends BaseAdapter {
 		if(convertView==null){
 			convertView=new LinearLayout(context);
 			TextView tv = new TextView(context);
-			tv.setWidth(200);
+			tv.setWidth(DPIUtil.dip2px(150));
 			tv.setTextSize(15);
 			tv.setSingleLine(true);
 			tv.setPadding(10, 10, 0, 0);
@@ -73,7 +76,9 @@ public class ReportMuluAdapter extends BaseAdapter {
 			
 		}
 		TextView leftTv = (TextView) (((LinearLayout)convertView).getChildAt(1));
+        leftTv.setTextColor(Color.BLACK);
 		TextView rightTv = (TextView) (((LinearLayout)convertView).getChildAt(0));
+        rightTv.setTextColor(Color.BLACK);
 		leftTv.setText(leftData.get(position));
 		rightTv.setText(rightData.get(position));
 		return convertView;
