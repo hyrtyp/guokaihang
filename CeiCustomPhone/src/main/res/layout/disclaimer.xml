@@ -3,7 +3,9 @@
     android:id="@id/welcome"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/guokaihang_back" >
+    android:background="#FFFFFF"
+    android:paddingLeft="@dimen/view_margin_smallest"
+    android:paddingRight="@dimen/view_margin_smallest">
 
     <LinearLayout
         android:id="@id/bottoms_Ll"

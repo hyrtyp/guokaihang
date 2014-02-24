@@ -35,6 +35,7 @@ import android.text.TextUtils.TruncateAt;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -46,7 +47,7 @@ public class ReportIntro extends ContainerActivity {
 	private LinearLayout textMul;
 	private TextView time, title;
 	private ImageView reportImg;
-	private ImageButton read;
+	private Button read;
 	private Report report;
 	private DataHelper dataHelper;
 	private AsyncImageLoader asyncImageLoader;
@@ -146,10 +147,10 @@ public class ReportIntro extends ContainerActivity {
 
 			}
 		});
-		read = (ImageButton) findViewById(R.id.report_intro_read);
+		read = (Button) findViewById(R.id.report_intro_read);
 		// 判断数据库中是否有记录
 		if (dataHelper.getReportListById(report.getName()).size() < 1) {
-			read.setImageResource(R.drawable.read_report_bookdownload_but);
+			read.setText("下载");
 			read.setOnClickListener(new OnClickListener() {
 
 				@Override
@@ -242,7 +243,7 @@ public class ReportIntro extends ContainerActivity {
 			});
 
 		} else {
-			read.setImageResource(R.drawable.read_report_read);
+			read.setText("阅读");
 			read.setOnClickListener(new OnClickListener() {
 
 				@Override

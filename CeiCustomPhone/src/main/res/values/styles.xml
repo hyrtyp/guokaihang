@@ -71,8 +71,8 @@
 
     <!--报告图片样式-->
     <style name="bg_iv">
-        <item name="android:layout_width">@dimen/bgiv_item_width</item>
-        <item name="android:layout_height">@dimen/bgiv_item_height</item>
+        <item name="android:layout_width">@dimen/bgdefual_item_width</item>
+        <item name="android:layout_height">@dimen/bgdefual_item_height</item>
         <item name="android:background">@drawable/read_report_report1</item>
     </style>
 
@@ -172,6 +172,29 @@
         <item name="android:layout_marginRight">@dimen/view_margin_small</item>
         <item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
         <item name="android:background">@drawable/phone_study_menu_select</item>
+    </style>
+
+    <!--按钮样式-->
+    <style name="button_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">@dimen/touchview_height_small</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">@drawable/button_bg</item>
+        <item name="android:layout_marginLeft">@dimen/view_margin_large</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">0dp</item>
+    </style>
+
+    <!--小按钮样式-->
+    <style name="smallbutton_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">24dp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">@drawable/item_button_bg</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">0dp</item>
     </style>
 
     <style name="Theme.Pap.TextAppearance.Small" parent="@android:style/TextAppearance.Small">

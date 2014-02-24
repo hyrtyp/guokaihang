@@ -33,6 +33,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.Gallery;
 import android.widget.HorizontalScrollView;
@@ -394,9 +395,9 @@ public abstract class BaseViewerActivity extends Activity implements
 						.findViewById(R.id.yjbg_light_jie);
 				ImageButton jiabut = (ImageButton) contentView
 						.findViewById(R.id.yjbg_light_jia);
-				ImageButton exitbut = (ImageButton) contentView
+                Button yesbut = (Button) contentView
 						.findViewById(R.id.yjbg_light_exit);
-				ImageButton yesbut = (ImageButton) contentView
+                Button exitbut = (Button) contentView
 						.findViewById(R.id.yjbg_light_yes);
 				final SeekBar bar = (SeekBar) contentView
 						.findViewById(R.id.yjbg_light_seekbar);
@@ -492,9 +493,9 @@ public abstract class BaseViewerActivity extends Activity implements
 						.findViewById(R.id.yjbg_light_jie);
 				ImageButton jiabut = (ImageButton) contentView
 						.findViewById(R.id.yjbg_light_jia);
-				ImageButton exitbut = (ImageButton) contentView
+				Button yesbut = (Button) contentView
 						.findViewById(R.id.yjbg_light_exit);
-				ImageButton yesbut = (ImageButton) contentView
+				Button exitbut = (Button) contentView
 						.findViewById(R.id.yjbg_light_yes);
 				final SeekBar bar = (SeekBar) contentView
 						.findViewById(R.id.yjbg_light_seekbar);
@@ -598,9 +599,9 @@ public abstract class BaseViewerActivity extends Activity implements
 				mPopupWindow.setBackgroundDrawable(new BitmapDrawable());
 				mPopupWindow
 						.showAtLocation(documentView, Gravity.CENTER, 0, 30);
-				ImageButton yesBut = (ImageButton) contentView
+				Button exitBut = (Button) contentView
 						.findViewById(R.id.yjbg_add_shuqian_yes);
-				ImageButton exitBut = (ImageButton) contentView
+                Button yesBut = (Button) contentView
 						.findViewById(R.id.yjbg_add_shuqian_exit);
 				yesBut.setOnClickListener(new View.OnClickListener() {
 

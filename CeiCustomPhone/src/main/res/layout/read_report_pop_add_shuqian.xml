@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     android:orientation="vertical"
-    android:background="#ffffffff"
+    android:background="@drawable/re_borderline"
     android:layout_width="300.0dip"
     android:layout_height="120dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
@@ -27,18 +27,17 @@
         android:layout_below="@+id/addmark_title"
         android:layout_margin="@dimen/view_margin_small">
 
-        <ImageButton
+        <Button
             android:id="@id/yjbg_add_shuqian_exit"
-            android:background="@drawable/read_report_pop_light_exit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            style="@style/button_style"
+            android:layout_marginLeft="0dp"
+            android:text="确认"/>
 
-        <ImageButton
+        <Button
             android:id="@id/yjbg_add_shuqian_yes"
-            android:background="@drawable/read_report_pop_light_yes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/view_margin" />
+            style="@style/button_style"
+            android:layout_gravity="center"
+            android:text="取消" />
 
     </LinearLayout>
 </RelativeLayout>

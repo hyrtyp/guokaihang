@@ -25,6 +25,8 @@ public class Report  implements Serializable{
     public static final String REPORT_PARTITION_ID="report_partition_id";//报告分类id
     public static final String REPORT_INTRO="report_intro";//报告分类id
     public static final String REPORT_FILENAME="report_filename";//报告分类id
+    public static final String REPORT_DOOR="report_door";//报告入口
+
     private String id;
 	private String isCheck;
 	private String name;
@@ -44,6 +46,15 @@ public class Report  implements Serializable{
 	private String partitiontID;
 	private String fileName;
 	private String isAsk;
+    private String door;
+
+    public String getDoor() {
+         return door;
+    }
+
+    public void setDoor(String door) {
+        this.door = door;
+    }
 
 	public String getIsAsk() {
 		return isAsk;

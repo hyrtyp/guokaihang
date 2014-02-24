@@ -24,6 +24,8 @@ import android.content.SharedPreferences;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.widget.Toast;
+
 import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
@@ -41,10 +43,11 @@ import com.hyrt.ceiphone.common.Disclaimer;
 import com.hyrt.readreport.CeiShelfBookActivity;
 import com.hyrt.readreport.ReadReportFL;
 import com.hyrt.readreport.ReadReportFind;
+import com.hyrt.readreport.ReadReportGoodActivity;
+import com.hyrt.readreport.ReadReportMF;
 import com.hyrt.readreport.ReadReportMainActivity;
+import com.hyrt.readreport.ReadReportPH;
 import com.hyrt.readreport.ReportIntro;
-import com.poqop.document.BaseViewerActivity;
-import com.poqop.document.MainBrowserActivity;
 
 public class ContainerActivity extends SherlockFragmentActivity {
 
@@ -95,10 +98,21 @@ public class ContainerActivity extends SherlockFragmentActivity {
 		switch (item.getItemId()) {
 		// Respond to the action bar's Up/Home button
 		case android.R.id.home:
-			/*for (int i = activities.size() - 1; i > 0; i--) {
-				activities.get(i).finish();
-			}*/
-            this.finish();
+                if(this instanceof ReadReportGoodActivity ||
+                        this instanceof ReadReportGoodActivity ||
+                        this instanceof ReadReportPH ||
+                        this instanceof ReadReportFL ||
+                        this instanceof ReadReportFind ||
+                        this instanceof ReadReportMF ||
+                        this instanceof Announcement ||
+                        this instanceof PersonCenter ||
+                        this instanceof Disclaimer){
+                    for (int i = activities.size() - 1; i > 0; i--) {
+                        activities.get(i).finish();
+                    }
+                }else{
+                    this.finish();
+                }
 			break;
 		}
 		return super.onOptionsItemSelected(item);

@@ -36,6 +36,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -88,7 +89,7 @@ public class ReadReportAdapter extends BaseAdapter {
 
 		holder.title = (TextView) convertView
 				.findViewById(R.id.tv_goodbg_title);
-		holder.download = (ImageButton) convertView
+		holder.download = (Button) convertView
 				.findViewById(R.id.ib_bg_download);
 		convertView.setTag(holder);
 		final Report report = data.get(position);
@@ -206,7 +207,7 @@ public class ReadReportAdapter extends BaseAdapter {
 				.getIsLoad() != null
 				&& dataHelper.getReportListById(report.getName()).get(0)
 						.getIsLoad().equals("yes")) {
-			holder.download.setBackgroundResource(R.drawable.read_report_read);
+			holder.download.setText("阅读");
 			holder.download.setOnClickListener(new OnClickListener() {
 
 				@Override
@@ -280,7 +281,7 @@ public class ReadReportAdapter extends BaseAdapter {
 	public class Holder {
 		ImageView handImg;
 		TextView title;
-		ImageButton download;
+		Button download;
 	}
 
 }

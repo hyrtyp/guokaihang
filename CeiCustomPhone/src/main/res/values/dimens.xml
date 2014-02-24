@@ -20,9 +20,13 @@
     <dimen name="touchview_height_small">32dp</dimen>
     <dimen name="touchview_height">48dp</dimen>
 
-    <!--报告图片的属性-->
+    <!--报告背景图片的属性-->
     <dimen name="bgiv_item_width">87dp</dimen>
     <dimen name="bgiv_item_height">110.0dp</dimen>
+
+    <!--报告默认图片的属性-->
+    <dimen name="bgdefual_item_width">83.5dp</dimen>
+    <dimen name="bgdefual_item_height">106.5dp</dimen>
 
     <!--按钮的高度-->
     <dimen name="btn_height">32dp</dimen>

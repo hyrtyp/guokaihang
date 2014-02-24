@@ -23,17 +23,26 @@
                 android:layout_weight="4.0"
                 android:padding="@dimen/view_margin_small">
 
+               <FrameLayout
+                android:layout_width="wrap_content"
+                android:id="@+id/report_intro_book_parent"
+                android:layout_height="wrap_content" >
+
+                <ImageView
+                    style="@style/bg_iv_bottom" />
+
                 <ImageView
                     android:id="@id/report_intro_book"
-                    style="@style/bg_iv"
-                    android:layout_alignParentLeft="true" />
+                    style="@style/bg_iv"/>
+
+                </FrameLayout>
 
                 <LinearLayout
                     android:id="@id/read_report_right"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_marginLeft="@dimen/view_margin_small"
-                    android:layout_toRightOf="@id/report_intro_book"
+                    android:layout_toRightOf="@id/report_intro_book_parent"
                     android:gravity="center_vertical"
                     android:orientation="vertical">
 
@@ -81,12 +90,11 @@
                             android:layout_weight="1"
                             style="@style/secondtitle_tv"/>
 
-                        <ImageButton
+                        <Button
                             android:id="@id/report_intro_read"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            style="@style/smallbutton_style"
                             android:layout_gravity="right"
-                            android:background="@drawable/read_report_read" />
+                            android:text="阅读"/>
                     </LinearLayout>
                 </LinearLayout>
             </RelativeLayout>
@@ -98,14 +106,13 @@
                 android:layout_weight="3.0"
                 android:background="#ffd9e6f7">
 
-                <ImageView
+                <Button
                     android:id="@id/report_intro_ml"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
                     android:layout_margin="@dimen/view_margin_small"
-                    android:background="@drawable/guokaihang_intro_ml" />
+                    style="@style/smallbutton_style"
+                    android:text="目录"/>
 
                 <LinearLayout
                     android:layout_width="fill_parent"

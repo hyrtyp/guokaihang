@@ -51,7 +51,8 @@ public class SqliteHelper extends SQLiteOpenHelper {
 				+ Report.REPORT_ISLOAD+ " VERCHAR,"
 				+ Report.REPORT_PARTITION_ID+ " VERCHAR,"
 				+ Report.REPORT_INTRO+ " VERCHAR,"
-				+ Report.REPORT_FILENAME+ " VERCHAR"
+                + Report.REPORT_FILENAME+ " VERCHAR,"
+                + Report.REPORT_DOOR+ " VERCHAR"
 				+")");
 		//所有报告表
 		db.execSQL("CREATE TABLE IF NOT EXISTS " + TB_ALLREPORT_NAME + "("
@@ -65,7 +66,8 @@ public class SqliteHelper extends SQLiteOpenHelper {
 				+ Report.REPORT_SIZE+ " VERCHAR,"
 				+ Report.REPORT_ISLOAD+ " VERCHAR,"
 				+ Report.REPORT_PARTITION_ID+ " VERCHAR,"
-				+ Report.REPORT_INTRO+ " VERCHAR"
+                + Report.REPORT_INTRO+ " VERCHAR,"
+                + Report.REPORT_DOOR+ " VERCHAR"
 				+")");
 		//图片缓存表
 		db.execSQL("CREATE TABLE IF NOT EXISTS " + TB_IMAGERESOURCE_NAME + "("
