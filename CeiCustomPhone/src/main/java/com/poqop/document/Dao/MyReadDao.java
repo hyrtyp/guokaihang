@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import com.hyrt.cei.db.DataHelper;
+import com.hyrt.cei.vo.Report;
 import com.poqop.document.DBHelper.MyDBHelper;
 import android.content.ContentValues;
 import android.content.Context;
@@ -25,12 +28,14 @@ public class MyReadDao {
 		values.put("key", key);
 		values.put("book_path", pdfPath);
 		values.put("pageNo", pageNo);
+        values.put(Report.REPORT_DOOR, DataHelper.reportDoor);
 		long id = database.insert("myRead_table", null, values);
 		return id;
 	}
 	public boolean getMyRead(String page,String path){
 		SQLiteDatabase database = myDBHelper.getWritableDatabase();
-		Cursor cursor = database.query("myRead_table", null, "pageNo = ? and book_path = ?", new String[]{page,path}, null, null, null);
+		Cursor cursor = database.query("myRead_table", null, "pageNo = ? and book_path = ?" +
+                " and " + Report.REPORT_DOOR + " = ?", new String[]{page,path,DataHelper.reportDoor}, null, null, null);
 		boolean b = cursor.moveToFirst();
 		cursor.getColumnCount();
 		cursor.close();
@@ -39,8 +44,9 @@ public class MyReadDao {
 	public List<Map<String, String>> getAllRead(String book_path){
 		List<Map<String, String>> data = new ArrayList<Map<String,String>>();
 		SQLiteDatabase db = myDBHelper.getReadableDatabase();
-		Cursor cursor = db.query("myRead_table", null,  "book_path = ?", 
-				new String[]{book_path}, null, null, "id desc");
+		Cursor cursor = db.query("myRead_table", null,  "book_path = ?"
+                + " and " + Report.REPORT_DOOR + " = ?",
+				new String[]{book_path,DataHelper.reportDoor}, null, null, "id desc");
 		cursor.moveToPosition(-1);
 		while(cursor.moveToNext()) {
 			Map<String, String> map = new HashMap<String, String>();
@@ -58,18 +64,19 @@ public class MyReadDao {
 		values.put("pageNo", pageNo);
 		values.put("title", title);
 		return myDBHelper.getWritableDatabase().update("myRead_table", values,
-				"book_path=?", new String[] { pdfPath});
+				"book_path=?"  + " and " + Report.REPORT_DOOR + " = ?", new String[] { pdfPath,DataHelper.reportDoor});
 	}
 	
 	public void deleteMyRead(String pdfPath) {
 		SQLiteDatabase db = myDBHelper.getReadableDatabase();
-		db.delete("myRead_table", "book_path=?", new String[]{pdfPath});
+		db.delete("myRead_table", "book_path=?" + " and " + Report.REPORT_DOOR + " = ?", new String[]{pdfPath,DataHelper.reportDoor});
 	}
 	
 	public HashMap<String, String>  queryRead(String book_path){
 		HashMap<String, String> hashMap = new HashMap<String, String>();
-		Cursor cursor = myDBHelper.getReadableDatabase().query("myRead_table", null, "book_path = ?", 
-				new String[]{book_path}, null, null, null);
+		Cursor cursor = myDBHelper.getReadableDatabase().query("myRead_table", null, "book_path = ?"
+                + " and " + Report.REPORT_DOOR + " = ?",
+				new String[]{book_path,DataHelper.reportDoor}, null, null, null);
 		cursor.moveToPosition(-1);
 		while(cursor.moveToNext()){
 			hashMap.put("bookName", cursor.getString(1));
@@ -84,19 +91,20 @@ public class MyReadDao {
 		SQLiteDatabase database = myDBHelper.getWritableDatabase();
 		ContentValues values = new ContentValues();
 		values.put("book_path", uri.toString());
+        values.put(Report.REPORT_DOOR, DataHelper.reportDoor);
 		long id = database.insert("myRecentRead_table", null, values);
 		return id;
 	}
 	
 	public void deleteMyRecentRead(int id) {
 		SQLiteDatabase db = myDBHelper.getReadableDatabase();
-		db.delete("myRecentRead_table", "id=?", new String[]{id+""});
+		db.delete("myRecentRead_table", "id=?"  + " and " + Report.REPORT_DOOR + " = ?", new String[]{id+"",DataHelper.reportDoor});
 	}
 	
 	public List<Uri> getAllRecentRead(){
 		List<Uri> data = new ArrayList<Uri>();
 		SQLiteDatabase db = myDBHelper.getReadableDatabase();
-		Cursor cursor = db.query("myRecentRead_table", null, null, null, null, null, "id desc");
+		Cursor cursor = db.query("myRecentRead_table", null, Report.REPORT_DOOR + " = ?", new String[]{DataHelper.reportDoor}, null, null, "id desc");
 		cursor.moveToPosition(-1);
 		while(cursor.moveToNext()) {
 			
@@ -108,7 +116,8 @@ public class MyReadDao {
 	
 	public Cursor getRecentRead(String book_path){
 		SQLiteDatabase db = myDBHelper.getReadableDatabase();
-		Cursor cursor = db.query("myRecentRead_table", null, "book_path = ?", new String[]{book_path}, null, null, null);
+		Cursor cursor = db.query("myRecentRead_table", null, "book_path = ?"
+                + " and " + Report.REPORT_DOOR + " = ?", new String[]{book_path,DataHelper.reportDoor}, null, null, null);
 		return cursor;
 	}
 }

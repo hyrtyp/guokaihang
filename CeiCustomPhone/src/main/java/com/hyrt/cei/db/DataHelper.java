@@ -28,6 +28,12 @@ public class DataHelper {
 	private SQLiteDatabase db;
 	public SqliteHelper dbHelper;
 
+    //两个入口的标志位
+    public final static String REPORTDOOR1 = "door1";
+    public final static String REPORTDOOR2 = "door2";
+
+    public static String reportDoor = REPORTDOOR1;
+
 	public DataHelper(Context context) {
 		dbHelper = new SqliteHelper(context, DB_NAME, null, DB_VERSION);
 		db = dbHelper.getWritableDatabase();
@@ -445,10 +451,9 @@ public class DataHelper {
 	/**
 	 * 保存已下载报告
 	 * 
-	 * @param Report
+	 * @param
 	 * @return
 	 */
-	// nullpointE
 	public Long saveReport(Report report) {
 		ContentValues values = new ContentValues();
 		// values.put(Report.ID, report.getId());
@@ -466,6 +471,7 @@ public class DataHelper {
 		values.put(Report.REPORT_PARTITION_ID, report.getPartitiontID());
 		values.put(Report.REPORT_INTRO, report.getIntro());
 		values.put(Report.REPORT_FILENAME, report.getFileName());
+        values.put(Report.REPORT_DOOR, reportDoor);
 		Long uid = db.insert(SqliteHelper.TB_REPORT_NAME, "", values);
 		return uid;
 	}
@@ -493,6 +499,7 @@ public class DataHelper {
 		values.put(Report.REPORT_DOWNLOAD, report.getDownpath());
 		values.put(Report.REPORT_PARTITION_ID, report.getPartitiontID());
 		values.put(Report.REPORT_INTRO, report.getIntro());
+        values.put(Report.REPORT_DOOR, reportDoor);
 		Long uid = db.insert(SqliteHelper.TB_ALLREPORT_NAME, "", values);
 		return uid;
 	}
@@ -504,8 +511,11 @@ public class DataHelper {
 	 */
 	public List<Report> getReportList() {
 		List<Report> reportList = new ArrayList<Report>();
-		Cursor cursor = db.query(SqliteHelper.TB_REPORT_NAME, null, null, null,
-				null, null, null);
+
+        //根据入口和名字查询报告列表
+        Cursor cursor = db.query(SqliteHelper.TB_REPORT_NAME, null, Report.REPORT_DOOR
+                + "=?", new String[] { reportDoor },
+                null, null, null);
 		cursor.moveToFirst();
 		while (!cursor.isAfterLast() && (cursor.getString(1) != null)) {
 			Report report = new Report();
@@ -534,8 +544,11 @@ public class DataHelper {
 
 	public List<Report> getAllReportListByID(String id) {
 		List<Report> reportList = new ArrayList<Report>();
-		Cursor cursor = db.query(SqliteHelper.TB_ALLREPORT_NAME, null, null,
-				null, null, null, null);
+
+        //根据入口和名字查询报告列表
+        Cursor cursor = db.query(SqliteHelper.TB_ALLREPORT_NAME, null, Report.REPORT_DOOR
+                + "=?", new String[] { reportDoor },
+                null, null, null);
 		cursor.moveToFirst();
 		while (!cursor.isAfterLast() && (cursor.getString(1) != null)) {
 			if (cursor.getString(14).equals(id)) {
@@ -571,7 +584,10 @@ public class DataHelper {
 
 	public List<Report> getReportListById(String name) {
 		List<Report> reportList = new ArrayList<Report>();
-		Cursor cursor = db.query(SqliteHelper.TB_REPORT_NAME, null, null, null,
+
+        //根据入口和名字查询报告列表
+		Cursor cursor = db.query(SqliteHelper.TB_REPORT_NAME, null, Report.REPORT_DOOR
+                + "=?", new String[] { reportDoor },
 				null, null, null);
 		cursor.moveToFirst();
 		while (!cursor.isAfterLast() && (cursor.getString(1) != null)) {
@@ -611,7 +627,7 @@ public class DataHelper {
 		ContentValues values = new ContentValues();
 		values.put(Report.REPORT_ISLOAD, report.getIsLoad());
 		int id = db.update(SqliteHelper.TB_REPORT_NAME, values,
-				Report.REPORT_ID + "=?", new String[] { report.getId() });
+				Report.REPORT_ID + "=?" + " and " + Report.REPORT_DOOR + " = ?", new String[] { report.getId(),reportDoor });
 		return id;
 	}
 
@@ -661,7 +677,7 @@ public class DataHelper {
 	 */
 	public int delReport(String reportid) {
 		int id = db.delete(SqliteHelper.TB_REPORT_NAME,
-				Report.REPORT_ID + "=?", new String[] { reportid });
+				Report.REPORT_ID + "=?" + " and " + Report.REPORT_DOOR + " = ?", new String[] { reportid,reportDoor });
 		return id;
 	}
 
