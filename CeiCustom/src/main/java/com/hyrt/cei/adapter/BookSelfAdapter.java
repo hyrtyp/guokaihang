@@ -114,9 +114,11 @@ public class BookSelfAdapter extends BaseAdapter {
 			tv = (TextView) convertView.findViewById(R.id.yjbg_book_item_tv);
 			bar = (ProgressBar) convertView
 					.findViewById(R.id.yjbg_book_item_pro);
-			bar.setVisibility(View.GONE);
+			bar.setVisibility(View.INVISIBLE);
 			tv.setText("100%");
 		}
+        TextView textView = (TextView)convertView.findViewById(R.id.yjbg_book_title_tv);
+        textView.setText(report.getName().substring(report.getName().indexOf("(")));
 		convertView.setLayoutParams(new AbsListView.LayoutParams(360, 214));
 		return convertView;
 	}

@@ -483,7 +483,6 @@ public class DataHelper {
 	 * @return
 	 */
 	public Long saveAllReport(Report report) {
-		delReport(report.getId());
 		ContentValues values = new ContentValues();
 		// values.put(Report.ID, report.getId());
 		values.put(Report.REPORT_ID, report.getId());

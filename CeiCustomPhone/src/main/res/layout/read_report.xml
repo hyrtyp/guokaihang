@@ -59,6 +59,7 @@
             android:layout_height="wrap_content"
             android:singleLine="true"
             android:text="更多"
+            android:paddingRight="2dp"
             android:textColor="#ffffffff"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:paddingTop="@dimen/padding_medium"
@@ -162,11 +163,11 @@
         <TextView
 
             android:layout_width="wrap_content"
-            android:layout_height="2000dp"
+            android:layout_height="15000dp"
             android:layout_alignParentRight="true"
             android:layout_marginBottom="35dp"
             android:id="@+id/sun_text"
-            android:text="111111111111111111111111111111111111111111111"
+            android:text="1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111"
             android:textAppearance="?android:attr/textAppearanceLarge" />
         
     </ScrollView>

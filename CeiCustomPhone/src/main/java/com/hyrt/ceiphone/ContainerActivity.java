@@ -188,7 +188,7 @@ public class ContainerActivity extends SherlockFragmentActivity {
 
 	}
 
-	public static class MenuFragmentIsLogin extends SherlockFragment {
+	public class MenuFragmentIsLogin extends SherlockFragment {
 		@Override
 		public void onCreate(Bundle savedInstanceState) {
 			super.onCreate(savedInstanceState);
@@ -200,7 +200,12 @@ public class ContainerActivity extends SherlockFragmentActivity {
 			// menu.add(loginName).setShowAsAction(
 			// MenuItem.SHOW_AS_ACTION_IF_ROOM
 			// | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
-
+            if(ContainerActivity.this instanceof CeiShelfBookActivity)
+                menu.add("书架")
+                        .setShowAsAction(
+                                MenuItem.SHOW_AS_ACTION_IF_ROOM
+                                        | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+            else
 				menu.add("书架")
 				//.setIcon(R.drawable.read_report_bookshelf)
 				.setIntent(intent_CeiShelfBookActivity)

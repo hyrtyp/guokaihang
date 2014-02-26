@@ -897,6 +897,8 @@ public class CeiShelfBookActivity extends ContainerActivity implements OnClickLi
 	private void alertIsSurePop(OnClickListener clickListener) {
 		View popView = this.getLayoutInflater().inflate(
 				R.layout.phone_study_issure, null);
+        TextView titletv = (TextView) popView.findViewById(R.id.pop_exit_show_title);
+        titletv.setText("确认删除此报告吗？");
 		popView.findViewById(R.id.phone_study_issure_sure_btn)
 				.setOnClickListener(clickListener);
 		popView.findViewById(R.id.phone_study_issure_cancel_btn)
