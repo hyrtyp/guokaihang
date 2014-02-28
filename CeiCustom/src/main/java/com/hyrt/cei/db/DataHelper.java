@@ -27,10 +27,8 @@ public class DataHelper {
 	private static int DB_VERSION = 2;
 	private SQLiteDatabase db;
 	public SqliteHelper dbHelper;
-    //两个入口的标志位
-    public final static String REPORTDOOR1 = "door1";
-    public final static String REPORTDOOR2 = "door2";
-    public static String reportDoor = REPORTDOOR1;
+    //入口的标志位
+    public static String reportDoor = "研究报告";
 
 	public DataHelper(Context context) {
 		dbHelper = new SqliteHelper(context, DB_NAME, null, DB_VERSION);

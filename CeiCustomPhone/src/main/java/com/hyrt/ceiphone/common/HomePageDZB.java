@@ -63,7 +63,7 @@ public class HomePageDZB extends Activity implements OnClickListener,
 	private int announcementCount;
 	// 全局的菜单集合
 	private ColumnEntry columnEntry;
-	// 4大业务模块
+	// 2大业务模块
 	public static final String[] MODELS = { "金融报告", "研究报告" };
 	// 消息更新的数量textview
 	private TextView textNum;

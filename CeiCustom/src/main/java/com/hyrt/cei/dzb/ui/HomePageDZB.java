@@ -36,6 +36,7 @@ import android.widget.Toast;
 
 import com.hyrt.cei.R;
 import com.hyrt.cei.application.CeiApplication;
+import com.hyrt.cei.db.DataHelper;
 import com.hyrt.cei.dzb.ui.vo.LRBitmap;
 import com.hyrt.cei.ui.personcenter.PersonCenter;
 import com.hyrt.cei.ui.common.LoginActivity;
@@ -79,8 +80,8 @@ public class HomePageDZB extends Activity implements OnClickListener,
 	private RelativeLayout righttre;
 	// 全局的菜单集合
 	private ColumnEntry columnEntry;
-	// 4大业务模块
-	public static final String[] MODELS = { "移动学习", "政经资讯", "经济数据", "研究报告" };
+    // 2大业务模块
+    public static final String[] MODELS = { "金融报告", "研究报告" };
 	// 首页背景
 	public RelativeLayout home_page_re;
 	//一级业务
@@ -96,29 +97,6 @@ public class HomePageDZB extends Activity implements OnClickListener,
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.home_page_dzb);
-		/*new Handler().postDelayed(new Runnable() {
-
-			@Override
-			public void run() {
-				boolean isDowning = false;
-				List<Preload> preloads = ((CeiApplication) getApplication()).dataHelper
-						.getPreloadList();
-				for (int i = 0; i < preloads.size(); i++)
-					if (preloads.get(i).getLoadFinish() != 1)
-						isDowning = true;
-				if (isDowning)
-					alertIsSurePop(new OnClickListener() {
-
-						@Override
-						public void onClick(View arg0) {
-							popWin.dismiss();
-							Intent intent = new Intent(HomePageDZB.this,
-									PreloadActivity.class);
-							startActivity(intent);
-						}
-					});
-			}
-		}, 200);*/
 		UpdateManager manager = new UpdateManager(HomePageDZB.this);
 		// 检查软件更新
 		manager.isUpdate();
@@ -182,22 +160,9 @@ public class HomePageDZB extends Activity implements OnClickListener,
 			}
 		}, 2000);
 		
-		for(int i=0;i<firstColumnEntries.size();i++){
-			if(firstColumnEntries.get(i).getName().contains("报告")){
-				((CeiApplication)(getApplication())).nowStart=firstColumnEntries.get(i).getName();
-                ReadReportActivity.MODEL_NAME = firstColumnEntries.get(i).getName();
-			}
-		}
-		
 		// 根据登录名来显示登陆按钮那个位置
 		if (loginName.equals("")) {
 			startActivity(new Intent().setClass(this, LoginActivity.class));
-			this.finish();
-		}else{
-//			editor.putString("LOGINNAME1", "");
-//			editor.putString("PASSWORD1", "");
-//			editor.commit();
-			startActivity(new Intent().setClass(this, ReadReportActivity.class));
 			this.finish();
 		}
 	}
@@ -252,7 +217,6 @@ public class HomePageDZB extends Activity implements OnClickListener,
 			if (!isModels && !columnEntry.getName().equals("关于我们"))
 				this.columnEntry.getWitSeaColumns().add(columnEntry);
 		}
-		columnEnties.addAll(columnEntry.getSelectColumnEntryChilds());
 		// 加载左右的图片
 		calculateRLBitmap(columnEnties);
 		home_page_re = (RelativeLayout) findViewById(R.id.home_page_re);
@@ -373,6 +337,9 @@ public class HomePageDZB extends Activity implements OnClickListener,
 			startActivity(intent);
 		}
 		if (name.equals("研究报告") || name.contains("报告")) {
+            ReadReportActivity.MODEL_NAME = name;
+            DataHelper.reportDoor = name;
+            ((CeiApplication) (getApplication())).nowStart = name;
 			Intent intent = new Intent(HomePageDZB.this,
 					ReadReportActivity.class);
 			startActivity(intent);
@@ -381,7 +348,7 @@ public class HomePageDZB extends Activity implements OnClickListener,
 			Intent intent = new Intent(HomePageDZB.this, EconDataMain.class);
 			startActivity(intent);
 		}
-		((CeiApplication) (getApplication())).nowStart = name;
+
 		addLog(name);
 	}
 
