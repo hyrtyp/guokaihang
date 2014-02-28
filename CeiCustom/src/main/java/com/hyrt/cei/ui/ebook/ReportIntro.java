@@ -116,7 +116,7 @@ public class ReportIntro extends BaseActivity {
     	  numdirectories[j] = matcher.group();
     	  j++;
       	}
-		for(int i=0;i<directories.length;i++){
+		for(int i=0;i<directories.length-1;i++){
 			try{String leftContent = null;
 			if(directories[i].length() > 17)
 				leftContent = directories[i]+"................................................................................................................................................................................................................................................................................................................";
