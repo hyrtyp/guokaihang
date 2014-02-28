@@ -338,7 +338,8 @@ public class HomePageDZB extends Activity implements OnClickListener,
 		}
 		if (name.equals("研究报告") || name.contains("报告")) {
             ReadReportActivity.MODEL_NAME = name;
-            DataHelper.reportDoor = name;
+            //TODO 双书架标志
+            //DataHelper.reportDoor = name;
             ((CeiApplication) (getApplication())).nowStart = name;
 			Intent intent = new Intent(HomePageDZB.this,
 					ReadReportActivity.class);

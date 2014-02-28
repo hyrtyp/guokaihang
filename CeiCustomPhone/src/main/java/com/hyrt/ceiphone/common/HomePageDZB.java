@@ -274,7 +274,8 @@ public class HomePageDZB extends Activity implements OnClickListener,
 		} else if (serviceName.equals("研究报告")||serviceName.contains("报告")) {
 			intent = new Intent(this, ReadReportMainActivity.class);
             ReadReportMainActivity.MODEL_NAME = serviceName;
-            DataHelper.reportDoor = serviceName;
+            //TODO 双书架标志
+            //DataHelper.reportDoor = serviceName;
             startActivity(intent);
 			// 跳转到研究报告页面
 		}
