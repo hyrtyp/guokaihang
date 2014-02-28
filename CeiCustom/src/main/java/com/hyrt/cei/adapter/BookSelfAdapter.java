@@ -8,6 +8,7 @@ import java.util.List;
 import com.hyrt.cei.R;
 import com.hyrt.cei.application.CeiApplication;
 import com.hyrt.cei.db.DataHelper;
+import com.hyrt.cei.ui.ebook.CeiShelfBookActivity;
 import com.hyrt.cei.util.AsyncImageLoader;
 import com.hyrt.cei.util.AsyncImageLoader.ImageCallback;
 import com.hyrt.cei.vo.ImageResourse;
@@ -35,8 +36,10 @@ public class BookSelfAdapter extends BaseAdapter {
 	private List<String> indexs = new ArrayList<String>();
 	public View viewBookSelf;
 	private HashMap<String, Drawable> drawables = new HashMap<String, Drawable>();
+    private Activity c;
 
 	public BookSelfAdapter(Activity c, List<Report> data, GridView gridView) {
+        this.c = c;
 		this.data = data;
 		this.gridView = gridView;
 		inflater = LayoutInflater.from(c);
@@ -56,15 +59,17 @@ public class BookSelfAdapter extends BaseAdapter {
 		return position;
 	}
 
-	public View getView(final int position, View convertView, ViewGroup parent) {
+	public View getView(final int position,View convertView, ViewGroup parent) {
 		// ImageView imageView;
 		indexs.add(position, "no");
 		final ProgressBar bar;
 		final TextView tv;
 		final Report report = data.get(position);
+
 		if (convertView == null) {
 			convertView = inflater.inflate(R.layout.yjbg_book_item, null);
 		}
+        final View convertView1 = convertView;
 		if(viewBookSelf == null)
 			viewBookSelf = convertView;
 		ImageView imageView = (ImageView) convertView
@@ -110,13 +115,21 @@ public class BookSelfAdapter extends BaseAdapter {
 			});
 
 		}
+
 		if (report.getIsLoad() != null && report.getIsLoad().equals("yes")) {
-			tv = (TextView) convertView.findViewById(R.id.yjbg_book_item_tv);
-			bar = (ProgressBar) convertView
-					.findViewById(R.id.yjbg_book_item_pro);
+            bar = (ProgressBar) convertView
+                    .findViewById(R.id.yjbg_book_item_pro);
+            tv = (TextView) convertView.findViewById(R.id.yjbg_book_item_tv);
 			bar.setVisibility(View.INVISIBLE);
 			tv.setText("100%");
+            convertView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ((CeiShelfBookActivity) c).ShelfDownload(convertView1, position);
+                }
+            });
 		}
+
         TextView textView = (TextView)convertView.findViewById(R.id.yjbg_book_title_tv);
         textView.setText(report.getName().substring(report.getName().indexOf("(")));
 		convertView.setLayoutParams(new AbsListView.LayoutParams(360, 214));

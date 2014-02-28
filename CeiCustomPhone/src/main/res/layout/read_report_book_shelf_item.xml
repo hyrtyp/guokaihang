@@ -125,6 +125,7 @@
             android:layout_alignParentBottom="true"
             android:paddingTop="@dimen/view_margin_small"
             android:text="11111"
+            android:visibility="invisible"
             style="@style/secondtitle_tv"
             android:textColor="@android:color/black"/>
     </LinearLayout>

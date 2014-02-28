@@ -179,7 +179,7 @@ public class ReadReportActivity extends BaseActivity implements
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.yjbg_main);
-		MODEL_NAME = "研究报告";
+        ((CeiApplication) getApplication()).nowStart = MODEL_NAME;
 		//= ((CeiApplication) getApplication()).nowStart;// 获取当前业务名称。
 		timeOutHelper = new TimeOutHelper(this);
 		// overridePendingTransition(R.anim.push_in, R.anim.push_out);

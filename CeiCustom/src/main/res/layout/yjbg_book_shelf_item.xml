@@ -120,6 +120,7 @@
             android:layout_alignParentBottom="true"
             android:paddingTop="5.0dip"
             android:text="body"
+            android:visibility="invisible"
             android:textColor="#ff535353" 
             android:layout_marginTop="10dp"/>
     </LinearLayout>

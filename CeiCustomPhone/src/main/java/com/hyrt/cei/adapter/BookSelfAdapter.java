@@ -13,6 +13,7 @@ import com.hyrt.cei.util.AsyncImageLoader.ImageCallback;
 import com.hyrt.cei.vo.ImageResourse;
 import com.hyrt.cei.vo.Report;
 import com.hyrt.ceiphone.R;
+import com.hyrt.readreport.CeiShelfBookActivity;
 
 import android.app.Activity;
 import android.graphics.drawable.Drawable;
@@ -71,6 +72,7 @@ public class BookSelfAdapter extends BaseAdapter {
             convertView = inflater
                     .inflate(R.layout.read_report_book_item, null);
         }
+        final View convertView1 = convertView;
         if (viewBookSelf == null)
             viewBookSelf = convertView;
         ImageView imageView = (ImageView) convertView
@@ -115,8 +117,16 @@ public class BookSelfAdapter extends BaseAdapter {
                     .findViewById(R.id.yjbg_book_item_pro);
             bar.setVisibility(View.INVISIBLE);
             tv.setText("100%");
+            convertView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ((CeiShelfBookActivity)activity).ShelfDownload(convertView1, position);
+                }
+            });
         }
 
+        TextView textView = (TextView)convertView.findViewById(R.id.yjbg_book_title_tv);
+        textView.setText(report.getName().substring(report.getName().indexOf("(")));
         //convertView.setLayoutParams(new AbsListView.LayoutParams(125, 210));
         return convertView;
     }

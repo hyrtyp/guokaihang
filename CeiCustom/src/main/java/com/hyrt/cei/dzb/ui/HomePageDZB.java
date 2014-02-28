@@ -185,6 +185,7 @@ public class HomePageDZB extends Activity implements OnClickListener,
 		for(int i=0;i<firstColumnEntries.size();i++){
 			if(firstColumnEntries.get(i).getName().contains("报告")){
 				((CeiApplication)(getApplication())).nowStart=firstColumnEntries.get(i).getName();
+                ReadReportActivity.MODEL_NAME = firstColumnEntries.get(i).getName();
 			}
 		}
 		
@@ -528,12 +529,12 @@ public class HomePageDZB extends Activity implements OnClickListener,
 	// 右边的图片集合
 	private List<Drawable> rightDrawables = new ArrayList<Drawable>();
 
-	/**
-	 * 获取所有业务图片，并分开左右
-	 * 
-	 * @param path
-	 * @param convertView
-	 */
+    /**
+     * 获取所有业务图片，并分开左右
+     * @param columnEntry
+     * @param totalNum
+     * @param imageLevel
+     */
 	public void getDrawables(ColumnEntry columnEntry, final int totalNum,
 			int imageLevel) {
 		final LRBitmap lrb = new LRBitmap();

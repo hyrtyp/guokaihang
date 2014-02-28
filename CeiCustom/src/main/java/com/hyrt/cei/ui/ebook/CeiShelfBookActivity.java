@@ -408,7 +408,7 @@ public class CeiShelfBookActivity extends Activity implements OnClickListener {
 												break;
 											case 100:
 												tv.setText("100%");
-												bar.setVisibility(View.GONE);
+												bar.setVisibility(View.INVISIBLE);
 												report.setIsLoad("yes");
 												dataHelper
 														.UpdateReportZT(report);
@@ -566,7 +566,7 @@ public class CeiShelfBookActivity extends Activity implements OnClickListener {
 
 	}
 
-	private void ShelfDownload(View arg1, final int arg2) {
+	public void ShelfDownload(View arg1, final int arg2) {
 		final Report report = data.get(arg2);
 		final TextView tv = (TextView) arg1
 				.findViewById(R.id.yjbg_book_item_tv);
@@ -647,7 +647,7 @@ public class CeiShelfBookActivity extends Activity implements OnClickListener {
 						break;
 					case 100:
 						tv.setText("100%");
-						bar.setVisibility(View.GONE);
+						bar.setVisibility(View.INVISIBLE);
 						report.setIsLoad("yes");
 						dataHelper.UpdateReportZT(report);
 						// 统计

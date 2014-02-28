@@ -115,6 +115,7 @@ public class HomePageDZB extends Activity implements OnClickListener,
 		for(int i=0;i<columnEntries.size();i++){
 			if(columnEntries.get(i).getName().contains("报告")){
 				((CeiApplication)(getApplication())).nowStart=columnEntries.get(i).getName();
+                ReadReportMainActivity.MODEL_NAME = columnEntries.get(i).getName();
 			}
 		}
 		

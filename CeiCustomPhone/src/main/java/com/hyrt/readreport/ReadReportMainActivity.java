@@ -147,7 +147,7 @@ public class ReadReportMainActivity extends ContainerActivity implements
 		/*UpdateManager manager = new UpdateManager(this);
 		// 检查软件更新
 		manager.isUpdate();*/
-		MODEL_NAME = "研究报告";
+        ((CeiApplication) getApplication()).nowStart = MODEL_NAME;
 		columnEntry = ((CeiApplication) getApplication()).columnEntry;
 		try {
 			bbStart = columnEntry.getColumnEntryChilds().get(0).getName()
