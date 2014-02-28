@@ -126,7 +126,12 @@ public class BookSelfAdapter extends BaseAdapter {
         }
 
         TextView textView = (TextView)convertView.findViewById(R.id.yjbg_book_title_tv);
-        textView.setText(report.getName().substring(report.getName().indexOf("(")));
+        try{
+            textView.setText(report.getName().substring(report.getName().indexOf("(")));
+        }catch (Exception e){
+
+        }
+
         //convertView.setLayoutParams(new AbsListView.LayoutParams(125, 210));
         return convertView;
     }
