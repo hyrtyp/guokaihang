@@ -73,7 +73,7 @@ public class CeiShelfBookActivity extends ContainerActivity implements OnClickLi
 	private Intent isDownloadintent;
 	private boolean isDownload = false;
 	HashMap<String, String> loadThreads = new HashMap<String, String>();
-	private Handler handler = new Handler() {
+	public Handler handler = new Handler() {
 
 		@Override
 		public void handleMessage(Message msg) {
@@ -889,12 +889,12 @@ public class CeiShelfBookActivity extends ContainerActivity implements OnClickLi
 				0, 200);
 	}
 	
-	private void showAlert(String str){
+	public void showAlert(String str){
 		Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
 	}
 	
-	private PopupWindow popWin;
-	private void alertIsSurePop(OnClickListener clickListener) {
+	public PopupWindow popWin;
+	public void alertIsSurePop(OnClickListener clickListener) {
 		View popView = this.getLayoutInflater().inflate(
 				R.layout.phone_study_issure, null);
         TextView titletv = (TextView) popView.findViewById(R.id.pop_exit_show_title);

@@ -1,5 +1,6 @@
 package com.hyrt.cei.adapter;
 
+import java.io.File;
 import java.lang.ref.SoftReference;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,6 +18,7 @@ import com.hyrt.readreport.CeiShelfBookActivity;
 
 import android.app.Activity;
 import android.graphics.drawable.Drawable;
+import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -121,6 +123,36 @@ public class BookSelfAdapter extends BaseAdapter {
                 @Override
                 public void onClick(View v) {
                     ((CeiShelfBookActivity)activity).ShelfDownload(convertView1, position);
+                }
+            });
+            convertView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    final Report report = data.get(position);
+                    ((CeiShelfBookActivity)activity).alertIsSurePop(new View.OnClickListener() {
+
+                        @Override
+                        public void onClick(View v) {
+                            ((CeiShelfBookActivity)activity).popWin.dismiss();
+                            data.remove(report);
+                            if (dataHelper.delReport(report.getId()) == 0) {
+                                ((CeiShelfBookActivity)activity).showAlert("删除失败");
+                                ((CeiShelfBookActivity)activity).popWin.dismiss();
+                                return;
+                            } else {
+                                // 删除成功后把本地文件也删除
+                                String pdfPath = report.getDatapath();
+                                File dir = new File(pdfPath);
+                                ((CeiShelfBookActivity)activity).delAll(dir);
+                                Message msg = new Message();
+                                msg.what = 10;
+                                ((CeiShelfBookActivity)activity).handler.sendMessage(msg);
+                                ((CeiShelfBookActivity)activity).popWin.dismiss();
+                                ((CeiShelfBookActivity)activity).showAlert("删除成功");
+                            }
+                        }
+                    });
+                    return true;
                 }
             });
         }
